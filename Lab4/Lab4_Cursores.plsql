@@ -91,22 +91,19 @@ END;
 
 /*PROGRAMA 3*/
 
-
+SET SERVEROUTPUT ON
 DECLARE
-    v_Department classes.department%TYPE;
-    v_Course classes.course%TYPE;
     CURSOR c_AllClasses IS
-    SELECT *
-    FROM classes;
-    v_ClassesRecord c_AllClasses%ROWTYPE;
+        SELECT *
+        FROM classes;
+        v_ClassesRecord c_AllClasses%ROWTYPE;
 BEGIN
     OPEN c_AllClasses;
     /* Esta es una orden FECH correcta, que almacena la primera fila en el registro PL/SQL con una estructura iguala a
     la lista la selección de la consulta */
     FETCH c_AllClasses INTO v_ClassesRecord;
-    /* Esta orden FETCH es incorrecta, ya que la lista de la selección de la consulta devuelve 7 columnas de la tabla
-    classes, y solo estamos almacenando en dos 2 variables: Estos dará un error de asignación de valores E-PLS-394 */
-    FETCH c_AllClasses INTO v_Department, v_Course;
+    DBMS_OUTPUT.PUT_LINE( v_ClassesRecord.room_id||' '||v_ClassesRecord.department|| ' ' || v_ClassesRecord.course);
+    
 END;
 
 
