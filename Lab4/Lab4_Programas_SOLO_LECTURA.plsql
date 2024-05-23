@@ -162,9 +162,9 @@ DECLARE
     v_LastName students.las_name%TYPE;
     -- Cursor para recuperar la informacion sobre los estudiantes de Historia
     CURSOR c_HistoryStudents IS
-    SELECT id, first_name, las_name
-    FROM students
-    WHERE major = ‘History’;
+        SELECT studentid, firstname, last_name
+        FROM students
+        WHERE major = 'History';
 
 BEGIN
  -- Abre el cursor e inicializa el conjunto activo
@@ -177,9 +177,9 @@ OPEN c_HistoryStudents;
         /* Procesa las filas recuperadas. En este caso matricula a cada estudiante en Historia 301, insertándolo en la tabla registered_students.
         Registra también el nombre y el apellido en la tabla temp_table */
         INSERT INTO registered_students ( students_id, deparment, course)
-        VALUES ( v_StudentID, ‘HIS’, 301);
+        VALUES ( v_StudentID, 'HIS', 301);
         INSERT INTO temp_table ( num_col, char_col)
-        VALUES ( v_studentID, v_FirstName || ‘ ‘|| v_LastName);
+        VALUES ( v_studentID, v_FirstName || ' '|| v_LastName);
     END LOOP;
  -- Libera los recursos utilizados por el curso
  CLOSE c_HistoryStudents;

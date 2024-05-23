@@ -108,7 +108,7 @@ END;
 
 /*PROGRAMA 4*/
 
-
+SET SERVEROUTPUT ON
 BEGIN
     UPDATE rooms
     SET number_seats = 100
@@ -128,6 +128,7 @@ BEGIN
 
 
 /* PROGRAMA 5 */
+SET SERVEROUTPUT ON
 BEGIN
     UPDATE rooms
     SET number_seats = 100
@@ -136,6 +137,8 @@ BEGIN
     IF SQL%ROWCOUNT = 0 THEN
         INSERT INTO rooms ( room_id, number_seats)
         VALUES (99980, 100);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Ya existe una fila con ese ID');
     END IF;
  END;
 
@@ -149,17 +152,91 @@ BEGIN
 
 DECLARE
  -- Registro para almacenar la información acerca de una clase.
- v_RoomData students%ROWTYPE;
+    v_RoomData students%ROWTYPE;
 BEGIN
  -- Extraer la información sobre la clase ID -1
- SELECT * INTO v_RoomData
- FROM students
- WHERE id = -1;
- /* La siguiente orden no se ejecutará nunca, ya que el control pasa inmediatamente al gestor de excepciones */
- IF SQL%NOTFOUND THEN
-    INSERT INTO temp_table ( char_col) VALUES ( ‘Not Found’);
- END IF;
+    SELECT * INTO v_RoomData
+    FROM students
+    WHERE STUDENTID = -1;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-    INSERT INTO temp_table ( num_col, char_col) VALUES ( 5, ‘Not Found, Excpetion Handler’);
+    INSERT INTO temp_table ( num_col, char_col) VALUES ( 5, 'Not Found, Excpetion Handler');
+END;
+
+
+/* PROGRAMA 7*/
+
+CREATE TABLE registered_students(
+    students_id NUMBER,
+    department VARCHAR2(25),
+    course VARCHAR2(50)
+);
+
+INSERT INTO students(studentid,firstname,last_name,major) VALUES(4, 'Jesus', 'Connolly', 'History');
+INSERT INTO students(studentid,firstname,last_name,major) VALUES(5, 'Jorge', 'Gonzalez', 'History');
+
+
+DECLARE
+    /* Declaración de variables para almacenar información acerca de los estudiantes que cursan la especialidad de Historia */
+    v_StudentID students.studentid%TYPE;
+    v_FirstName students.firstname%TYPE;
+    v_LastName students.last_name%TYPE;
+    -- Cursor para recuperar la informacion sobre los estudiantes de Historia
+    CURSOR c_HistoryStudents IS
+        SELECT studentid, firstname, last_name
+        FROM students
+        WHERE major = ('History');
+
+BEGIN
+ -- Abre el cursor e inicializa el conjunto activo
+OPEN c_HistoryStudents;
+    LOOP
+        -- Recupera la información del siguiente estudiante
+        FETCH c_HistoryStudents INTO v_StudentID, v_FirstName, v_LastName ;
+        -- Salida del bucle cuando no hay más filas por recuperar
+        EXIT WHEN c_HistoryStudents%NOTFOUND ;
+        /* Procesa las filas recuperadas. En este caso matricula a cada estudiante en Historia 301, insertándolo en la tabla registered_students.
+        Registra también el nombre y el apellido en la tabla temp_table */
+        INSERT INTO registered_students ( students_id, department, course)
+        VALUES ( v_StudentID, 'HIS', 301);
+        INSERT INTO temp_table ( num_col, char_col)
+        VALUES ( v_studentID, v_FirstName || ''|| v_LastName);
+    END LOOP;
+ -- Libera los recursos utilizados por el curso
+ CLOSE c_HistoryStudents;
+-- Confirmamos el trabajo
+---COMMIT;
+END;
+
+
+/* PROGRAMA  8 */
+DECLARE
+    /* Declaración de variables para almacenar información acerca de los estudiantes que cursan la especialidad de Historia */
+    v_StudentID students.studentid%TYPE;
+    v_FirstName students.firstname%TYPE;
+    v_LastName students.last_name%TYPE;
+    -- Cursor para recuperar la información sobre los estudiantes de Historia
+    CURSOR c_HistoryStudents IS
+    SELECT studentid, firstname, last_name
+    FROM students
+    WHERE major = 'History';
+BEGIN
+ -- Abre el cursor e inicializa el conjunto activo
+    OPEN c_HistoryStudents;
+        LOOP
+            -- Recupera la información del siguiente estudiante
+            FETCH c_HistoryStudents INTO v_StudentID, v_FirstName, v_LastName ;
+            /* Procesa las filas recuperadas. En este caso matricula a cada estudiante en Historia 301, insertándolo en la tabla registered_students.
+            Registra también el nombre y el apellido en la tabla temp_table */
+            INSERT INTO registered_students ( students_id, department, course)
+            VALUES ( v_StudentID, 'HIS', 301);
+            INSERT INTO temp_table ( num_col, char_col)
+            VALUES ( v_studentID, v_FirstName || ' '|| v_LastName);
+            -- Salida del bucle cuando no hay más filas por recuperar
+            EXIT WHEN c_HistoryStudents%NOTFOUND ;
+        END LOOP;
+ -- Libera los recursos utilizados por el curso
+ CLOSE c_HistoryStudents;
+-- Confirmamos el trabajo
+COMMIT;
 END;
