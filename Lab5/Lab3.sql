@@ -52,7 +52,7 @@ maxvalue 100
 cycle;
 
 -- Esto *5 ish
-INSERT INTO Colaboradores (nombre, apellido, cedula, sexo, fecha_nacimiento, fecha_ingreso, estatus, salario_mensual)
+INSERT INTO Colaboradores (id_codcolaborador, nombre, apellido, cedula, sexo, fecha_nacimiento, fecha_ingreso, estatus, salario_mensual)
     VALUES(colaboradores_sequence.nextval, 'Pedro', 'Lucero', '8-973-1067', 'M', TO_DATE('2001-09-01', 'yyyy-mm-dd'), TO_DATE('2024-05-22', 'yyyy-mm-dd'), 'A', 1500);
 
 DECLARE
