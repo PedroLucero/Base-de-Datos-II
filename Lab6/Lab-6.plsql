@@ -21,8 +21,16 @@ EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
       DBMS_OUTPUT.PUT_LINE('Error: Llave duplicada');
     WHEN VALUE_ERROR THEN 
-        DBMS_OUTPUT.PUT_LINE('Esta operacion inválida');
+        DBMS_OUTPUT.PUT_LINE('Error: Operacion inválida');
 END cargar_colaboradores;
+
+-- Función para calcular salario quincenal
+CREATE OR REPLACE FUNCTION calcular_salario_quincenal(p_salario_mensual NUMBER)
+    RETURN NUMBER
+    IS
+    BEGIN
+        RETURN p_salario_mensual/2;
+END calcular_salario_quincenal;
 
 -- Función para calcular seguro social
 CREATE OR REPLACE FUNCTION calcular_seguro_social(p_salario_mensual NUMBER)
@@ -38,6 +46,14 @@ CREATE OR REPLACE FUNCTION calcular_seguro_educativo(p_salario_mensual NUMBER)
     IS
     BEGIN
         RETURN p_salario_mensual * 0.0125;
+END calcular_seguro_educativo;
+
+-- Función para calcular seguro educativo
+CREATE OR REPLACE FUNCTION calcular_salario_neto(p_salario_mensual NUMBER, p_seguro_educativo NUMBER, p_seguro_social NUMBER)
+    RETURN NUMBER
+    IS
+    BEGIN
+        RETURN p_salario_mensual - p_seguro_educativo - p_seguro_social;
 END calcular_seguro_educativo;
 
 -- Procedimiento para calcular y cargar salarios quincenales
@@ -70,10 +86,10 @@ BEGIN
 
         v_salario_mensual := v_fila_cursor.salario_mensual;
 
-        v_salario_quincenal := v_salario_mensual / 2; /*CONVERTIR ESTO A UNA FUNCION*/
+        v_salario_quincenal := calcular_salario_quincenal(v_salario_mensual); 
         v_seguro_social := calcular_seguro_social(v_salario_mensual);
         v_seguro_educativo := calcular_seguro_educativo(v_salario_mensual);
-        v_salario_neto := v_salario_quincenal - v_seguro_social - v_seguro_educativo; /*CONVERTIR ESTO A UNA FUNCION*/
+        v_salario_neto := calcular_salario_neto(v_salario_mensual, v_seguro_educativo, v_seguro_social);
 
         INSERT INTO salario_quincenal (id_salario, id_codcolaborador, fecha_pago, salario_quincenal, seguro_social, seguro_educativo, salario_neto)
         VALUES (salarios_sequence.NEXTVAL, v_fila_cursor.id_codcolaborador, v_fecha_pago, v_salario_quincenal, v_seguro_social, v_seguro_educativo, v_salario_neto);
@@ -82,15 +98,13 @@ BEGIN
 
     COMMIT;
 EXCEPTION
-    WHEN OTHERS THEN
-        ROLLBACK;
-        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
     WHEN DUP_VAL_ON_INDEX THEN
       DBMS_OUTPUT.PUT_LINE('Error: Llave duplicada');
     WHEN VALUE_ERROR THEN 
         DBMS_OUTPUT.PUT_LINE('Esta operacion inválida');
 END procesar_salarios_quincenales;
-/* BLOQUE ANONIMOOOOOO*/
+
+/* BLOQUE ANONIMO*/
 BEGIN
 
 
@@ -112,11 +126,8 @@ BEGIN
     cargar_colaboradores('Juan', 'Perez', '1-111-1111', 'M', TO_DATE('2000-01-01', 'yyyy-mm-dd'), TO_DATE('2023-12-12', 'yyyy-mm-dd'), 'V', 2501);
 
     -- Procesar salarios quincenales para colaboradores activos
-    procesar_salarios_quincenales('A'); --Aquí hay que ver si es insertado por consola
+    procesar_salarios_quincenales('A');
 
     DBMS_OUTPUT.PUT_LINE('Colaborador cargado y salarios quincenales calculados.');
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
 /
