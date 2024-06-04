@@ -67,3 +67,8 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Error al insertar el préstamo aprobado: ' || SQLERRM);
 END;
 /
+
+BEGIN 
+
+END;
+/
