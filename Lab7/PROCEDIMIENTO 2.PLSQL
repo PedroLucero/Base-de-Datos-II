@@ -39,6 +39,8 @@ BEGIN
     INSERT INTO CLIENTE (ID_CLIENTE, NOMBRE, APELLIDO, CEDULA, SEXO, FECHA_NACIMIENTO, EDAD, ID_PROFESION)
     VALUES (SEQ_CLIENTE.NEXTVAL, p_nombre, p_apellido, p_cedula, p_sexo, p_fecha_nacimiento, v_edad, p_profesion);
 
+    COMMIT;
+
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Error: Llave duplicada');
@@ -51,12 +53,22 @@ END cargar_cliente;
 
 
 --CARGA DE PRUEBA
-INSERT INTO PROFESION_CLIENTE (ID_PROFESION, PROFESIO)
+INSERT INTO PROFESION_CLIENTE (ID_PROFESION, PROFESION)
 VALUES (1, 'Ingeniero en Refrigeracion y Empuje');
 
+INSERT INTO PROFESION_CLIENTE (ID_PROFESION, PROFESION)
+VALUES (2, 'Licenciado en Mantenimiento de areas verdes');
+--CARGA DE PRUEBA
 
+
+--PRUEBA**************************************************************************************
 BEGIN
     cargar_cliente('Andres','Valdes','6-726-1938','M',TO_DATE('03-06-2004', 'DD-MM-YYYY'),1);
 END;
+
+BEGIN
+    cargar_cliente('Jimmy','Johnson','8-1006-1238','M',TO_DATE('07-02-1974', 'DD-MM-YYYY'),2);
+END;
+
 
 
