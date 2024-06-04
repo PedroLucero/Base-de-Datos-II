@@ -432,6 +432,6 @@ END;
 
 -- Invocación No.2 – Con Notacion nominal
 BEGIN
- AddNewStudent( p_Firstname => ‘Barbara’,
- p_LastName => ‘Blues’);
+ AddNewStudent( p_Firstname => 'Bruno',
+ p_LastName => 'Alves');
 END;
