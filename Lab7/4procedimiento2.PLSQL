@@ -51,24 +51,36 @@ EXCEPTION
 END cargar_cliente;
 /
 
+DECLARE
+    v_nombre CLIENTE.NOMBRE%TYPE := 'Andres';
+    v_apellido CLIENTE.APELLIDO%TYPE := 'Valdes';
+    v_cedula CLIENTE.CEDULA%TYPE := '6-726-1938';
+    v_sexo CLIENTE.SEXO%TYPE := 'M';
+    v_fecha_nacimiento CLIENTE.FECHA_NACIMIENTO%TYPE := TO_DATE('03-06-2004', 'DD-MM-YYYY');
+    v_profesion CLIENTE.ID_PROFESION%TYPE := 2;
+BEGIN 
+    DECLARE
+        v_edad NUMBER;
+    BEGIN
+        v_edad := calcular_edad(v_fecha_nacimiento);
+    END;
 
---CARGA DE PRUEBA
-INSERT INTO PROFESION_CLIENTE (ID_PROFESION, PROFESION)
-VALUES (1, 'Ingeniero en Refrigeracion y Empuje');
-
-INSERT INTO PROFESION_CLIENTE (ID_PROFESION, PROFESION)
-VALUES (2, 'Licenciado en Mantenimiento de areas verdes');
---CARGA DE PRUEBA
-
-
---PRUEBA**************************************************************************************
-BEGIN
-    cargar_cliente('Andres','Valdes','6-726-1938','M',TO_DATE('03-06-2004', 'DD-MM-YYYY'),1);
+    cargar_cliente(
+        p_nombre => v_nombre,
+        p_apellido => v_apellido,
+        p_cedula => v_cedula,
+        p_sexo => v_sexo,
+        p_fecha_nacimiento => v_fecha_nacimiento,
+        p_profesion => v_profesion
+    );
+    DBMS_OUTPUT.PUT_LINE('Cliente insertado correctamente');
+EXCEPTION
+    WHEN DUP_VAL_ON_INDEX THEN
+        DBMS_OUTPUT.PUT_LINE('Error: Llave duplicada');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
 END;
-
-BEGIN
-    cargar_cliente('Jimmy','Johnson','8-1006-1238','M',TO_DATE('07-02-1974', 'DD-MM-YYYY'),2);
-END;
+/
 
 
 
