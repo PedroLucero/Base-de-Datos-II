@@ -67,3 +67,27 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('Error al insertar el préstamo aprobado: ' || SQLERRM);
 END;
 /
+--Bloque anonimo
+DECLARE
+    v_id_tipo_prestamo NUMBER := 1; -- Préstamo Personal
+    v_id_cliente NUMBER := 1; -- Cliente con ID 1
+    v_fecha_apro DATE := SYSDATE; -- Fecha actual
+    v_monto NUMBER := 10000; -- Monto del préstamo
+    v_letra NUMBER := 500; -- Letra del préstamo
+    v_cod_sucursal NUMBER := 1; -- Sucursal Centro
+    v_id_usuario NUMBER := 1; -- Usuario con ID 1
+    v_fecha_pago DATE := TO_DATE('01/07/2023', 'DD/MM/YYYY'); -- Fecha de pago
+BEGIN
+    insertar_prestamo_aprobado(
+        p_id_tipo_prestamo => v_id_tipo_prestamo,
+        p_id_cliente => v_id_cliente,
+        p_fecha_apro => v_fecha_apro,
+        p_monto => v_monto,
+        p_letra => v_letra,
+        p_cod_sucursal => v_cod_sucursal,
+        p_id_usuario => v_id_usuario,
+        p_fecha_pago => v_fecha_pago
+    );
+    DBMS_OUTPUT.PUT_LINE('Préstamo aprobado e insertado correctamente.');
+END;
+/
