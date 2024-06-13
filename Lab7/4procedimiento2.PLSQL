@@ -18,26 +18,25 @@ CREATE OR REPLACE PROCEDURE cargar_cliente(
     p_cedula CLIENTE.CEDULA%TYPE,
     p_sexo CLIENTE.SEXO%TYPE,
     p_fecha_nacimiento CLIENTE.FECHA_NACIMIENTO%TYPE,
-    p_profesion CLIENTE.ID_PROFESION%TYPE
+    p_profesion CLIENTE.ID_PROFESION%TYPE,
+    p_cod_sucursal CLIENTE.COD_SUCURSAL%TYPE
 )
 IS
     v_edad NUMBER;
+    v_profesion_cliente NUMBER;
 BEGIN
     -- Validar que la profesión existe
-    DECLARE
-        v_profesion_cliente NUMBER;
-    BEGIN
         SELECT COUNT(*) INTO v_profesion_cliente
         FROM PROFESION_CLIENTE
         WHERE ID_PROFESION = p_profesion;
-    END;
+  
 
     -- Calcular la edad
     v_edad := calcular_edad(p_fecha_nacimiento);
     
     -- Insertar los datos del cliente
-    INSERT INTO CLIENTE (ID_CLIENTE, NOMBRE, APELLIDO, CEDULA, SEXO, FECHA_NACIMIENTO, EDAD, ID_PROFESION)
-    VALUES (SEQ_CLIENTE.NEXTVAL, p_nombre, p_apellido, p_cedula, p_sexo, p_fecha_nacimiento, v_edad, p_profesion);
+    INSERT INTO CLIENTE (ID_CLIENTE, NOMBRE, APELLIDO, CEDULA, SEXO, FECHA_NACIMIENTO, EDAD, ID_PROFESION,COD_SUCURSAL)
+    VALUES (SEQ_CLIENTE.NEXTVAL, p_nombre, p_apellido, p_cedula, p_sexo, p_fecha_nacimiento, v_edad, p_profesion,p_cod_sucursal);
 
     COMMIT;
 
@@ -58,20 +57,21 @@ DECLARE
     v_sexo CLIENTE.SEXO%TYPE := 'M';
     v_fecha_nacimiento CLIENTE.FECHA_NACIMIENTO%TYPE := TO_DATE('03-06-2004', 'DD-MM-YYYY');
     v_profesion CLIENTE.ID_PROFESION%TYPE := 2;
+    v_COD_SUCURSAL CLIENTE.COD_SUCURSAL%TYPE :=4;
+    v_edad NUMBER;
 BEGIN 
-    DECLARE
-        v_edad NUMBER;
-    BEGIN
-        v_edad := calcular_edad(v_fecha_nacimiento);
-    END;
+    
+    v_edad := calcular_edad(v_fecha_nacimiento);
+
 
     cargar_cliente(
-        p_nombre => v_nombre,
+        p_nombre => v_nombre,  
         p_apellido => v_apellido,
         p_cedula => v_cedula,
         p_sexo => v_sexo,
         p_fecha_nacimiento => v_fecha_nacimiento,
-        p_profesion => v_profesion
+        p_profesion => v_profesion,
+        p_cod_sucursal => v_COD_SUCURSAL
     );
     DBMS_OUTPUT.PUT_LINE('Cliente insertado correctamente');
 EXCEPTION

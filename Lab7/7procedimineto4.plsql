@@ -18,13 +18,13 @@ END cargar_transacpagos;
 
 /*Bloque anonimo para ejecutar el procedimiento*/
 
+INSERT INTO usuario(ID_USUARIO,CEDULA_USUARIO,NOMBRE_USUARIO) VALUES(1, '8-1002-2448', 'Jose Hernadnez');
 BEGIN
-    INSERT INTO usuario(ID_USUARIO,CEDULA_USUARIO,NOMBRE_USUARIO) VALUES(1, '8-1002-2448', 'Jose Hernadnez');
-
-    cargar_transacpagos(1020,2,1,3,TO_DATE('06-04-2024', 'DD-MM-YYYY'),1200.40, TO_DATE('06-04-2024 2:54:25', 'DD-MM-YYYY hh24:mi:ss'),1);
-    cargar_transacpagos(1021,2,2,1,TO_DATE('10-05-2023', 'DD-MM-YYYY'),400.00, TO_DATE('10-05-2023 15:30:09', 'DD-MM-YYYY hh24:mi:ss'),1);
-    cargar_transacpagos(1022,1,4,2,TO_DATE('10-12-2023', 'DD-MM-YYYY'),150.25, TO_DATE('10-12-2023 3:30:33', 'DD-MM-YYYY hh24:mi:ss'),1);
-    cargar_transacpagos(1023,1,3,4,TO_DATE('24-06-2022', 'DD-MM-YYYY'),80.00, TO_DATE('24-06-2022 18:14:54', 'DD-MM-YYYY hh24:mi:ss'),1);
+    
+    
+    cargar_transacpagos(1021,1,1,1,TO_DATE('24-07-2022', 'DD-MM-YYYY'),500.00, TO_DATE('24-07-2022 19:10:54', 'DD-MM-YYYY hh24:mi:ss'),1);
+    cargar_transacpagos(1022,2,2,2,TO_DATE('06-04-2024', 'DD-MM-YYYY'),1200.40, TO_DATE('06-04-2024 2:54:25', 'DD-MM-YYYY hh24:mi:ss'),1);
+    cargar_transacpagos(1023,3,3,3,TO_DATE('10-05-2023', 'DD-MM-YYYY'),400.00, TO_DATE('10-05-2023 15:30:09', 'DD-MM-YYYY hh24:mi:ss'),1);
     
 END;
 /
