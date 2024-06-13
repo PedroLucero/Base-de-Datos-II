@@ -102,7 +102,7 @@ DECLARE
     v_fecha_pago3 DATE := TO_DATE('10/10/2023', 'DD/MM/YYYY'); -- Fecha de pago
 BEGIN
 
-    INSERT INTO usuario(ID_USUARIO,CEDULA_USUARIO,NOMBRE_USUARIO) VALUES(1, '8-1002-2448', 'Jose Hernadnez');
+    -- INSERT INTO usuario(ID_USUARIO,CEDULA_USUARIO,NOMBRE_USUARIO) VALUES(1, '8-1002-2448', 'Jose Hernadnez');
     insertar_prestamo_aprobado(
         p_id_tipo_prestamo => v_id_tipo_prestamo,
         p_id_cliente => v_id_cliente,

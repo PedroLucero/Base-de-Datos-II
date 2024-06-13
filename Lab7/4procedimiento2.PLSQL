@@ -59,6 +59,8 @@ DECLARE
     v_profesion CLIENTE.ID_PROFESION%TYPE := 2;
     v_COD_SUCURSAL CLIENTE.COD_SUCURSAL%TYPE :=4;
     v_edad NUMBER;
+
+    
 BEGIN 
     
     v_edad := calcular_edad(v_fecha_nacimiento);
@@ -73,6 +75,10 @@ BEGIN
         p_profesion => v_profesion,
         p_cod_sucursal => v_COD_SUCURSAL
     );
+    DBMS_OUTPUT.PUT_LINE('Cliente insertado correctamente');
+
+    cargar_cliente('Jose', 'Hernandez', '8-1002-2448', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'),3,2);
+    cargar_cliente('Pedro', 'Lucero', '8-1442-9148', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'),5,3);
     DBMS_OUTPUT.PUT_LINE('Cliente insertado correctamente');
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
