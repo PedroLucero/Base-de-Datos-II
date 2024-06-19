@@ -19,7 +19,11 @@ CREATE OR REPLACE PROCEDURE cargar_cliente(
     p_sexo CLIENTE.SEXO%TYPE,
     p_fecha_nacimiento CLIENTE.FECHA_NACIMIENTO%TYPE,
     p_profesion CLIENTE.ID_PROFESION%TYPE,
-    p_cod_sucursal CLIENTE.COD_SUCURSAL%TYPE
+    p_cod_sucursal CLIENTE.COD_SUCURSAL%TYPE,
+    p_email_cliente EMAIL_CLIENTES.EMAIL%TYPE,
+    p_tipo_email TIPO_EMAIL.ID_TIPO_EMAIL%TYPE,
+    p_tipo_telefono TIPO_TELEFONO.ID_TIPO_TELEFONO%TYPE,
+    p_telefono_cliente TELEFONO_CLIENTE.NUM_TELEFONO%TYPE
 )
 IS
     v_edad NUMBER;
@@ -37,6 +41,15 @@ BEGIN
     -- Insertar los datos del cliente
     INSERT INTO CLIENTE (ID_CLIENTE, NOMBRE, APELLIDO, CEDULA, SEXO, FECHA_NACIMIENTO, EDAD, ID_PROFESION,COD_SUCURSAL)
     VALUES (SEQ_CLIENTE.NEXTVAL, p_nombre, p_apellido, p_cedula, p_sexo, p_fecha_nacimiento, v_edad, p_profesion,p_cod_sucursal);
+
+    --Insertar los datos del Email del cliente
+    INSERT INTO EMAIL_CLIENTES(ID_TIPO_EMAIL,ID_CLIENTE,EMAIL)
+    VALUES(p_tipo_email,SEQ_CLIENTE.CURRVAL,p_email_cliente);
+
+    --Inserta los datos del telefono del cliente
+    INSERT INTO TELEFONO_CLIENTE(ID_CLIENTE,ID_TIPO_TELEFONO,NUM_TELEFONO)
+    VALUES(SEQ_CLIENTE.CURRVAL,p_tipo_telefono,p_telefono_cliente);
+
 
     COMMIT;
 
@@ -59,10 +72,14 @@ DECLARE
     v_profesion CLIENTE.ID_PROFESION%TYPE := 2;
     v_COD_SUCURSAL CLIENTE.COD_SUCURSAL%TYPE :=4;
     v_edad NUMBER;
+    v_email_cliente EMAIL_CLIENTES.EMAIL%TYPE := 'andres.valdes2@utp.ac.pa';
+    v_tipo_email TIPO_EMAIL.ID_TIPO_EMAIL%TYPE := 3;
+    v_tipo_telefono TIPO_TELEFONO.ID_TIPO_TELEFONO%TYPE:= 1;
+    v_telefono_cliente TELEFONO_CLIENTE.NUM_TELEFONO%TYPE:='6609-0485';
 
     
 BEGIN 
-    
+
     v_edad := calcular_edad(v_fecha_nacimiento);
 
 
@@ -73,12 +90,16 @@ BEGIN
         p_sexo => v_sexo,
         p_fecha_nacimiento => v_fecha_nacimiento,
         p_profesion => v_profesion,
-        p_cod_sucursal => v_COD_SUCURSAL
+        p_cod_sucursal => v_COD_SUCURSAL,
+        p_email_cliente => v_email_cliente,
+        p_tipo_email => v_tipo_email,
+        p_tipo_telefono => v_tipo_telefono,
+        p_telefono_cliente => v_telefono_cliente
     );
     DBMS_OUTPUT.PUT_LINE('Cliente insertado correctamente');
 
-    cargar_cliente('Jose', 'Hernandez', '8-1002-2448', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'),3,2);
-    cargar_cliente('Pedro', 'Lucero', '8-1442-9148', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'),5,3);
+    cargar_cliente('Jose', 'Hernandez', '8-1002-2448', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'),3,2,'jozzepher77@gmail.com',1,1,'6723-0263');
+    cargar_cliente('Pedro', 'Lucero', '8-1442-9148', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'),5,3,'pedro.lucero@utp.ac.pa',3,1,'6997-2738');
     DBMS_OUTPUT.PUT_LINE('Cliente insertado correctamente');
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
