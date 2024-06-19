@@ -55,6 +55,8 @@ BEGIN
     SET MONTOPRESTAMOS = v_monto_sucursal + p_monto
     WHERE COD_SUCURSAL = p_cod_sucursal;
 
+
+
     COMMIT;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
