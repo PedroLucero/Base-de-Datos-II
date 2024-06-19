@@ -38,7 +38,10 @@ CREATE OR REPLACE PROCEDURE tablas_parametricas AS
         INSERT INTO Tipo_Prestamo(ID_TIPO_PRESTAMO, DESCRIPCION_PRESTAMO,TASA) VALUES(2, 'Auto', 7.5);
         INSERT INTO Tipo_Prestamo(ID_TIPO_PRESTAMO, DESCRIPCION_PRESTAMO,TASA) VALUES(3, 'Hipoteca', 5.25);
         INSERT INTO Tipo_Prestamo(ID_TIPO_PRESTAMO, DESCRIPCION_PRESTAMO,TASA) VALUES(4, 'Garantizado con ahorros', 3.45);
+        
+        /*INSERCION DE LA TABLA usuario*/
 
+        INSERT INTO usuario(ID_USUARIO,CEDULA_USUARIO,NOMBRE_USUARIO) VALUES(1, '8-1002-2448', 'Jose Hernadnez');
 
     COMMIT;
     END tablas_parametricas;
