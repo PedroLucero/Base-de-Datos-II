@@ -140,39 +140,39 @@ create table FabricanteDistribuidor(
 
 --INICIO DE CARGA DE DATOS --
 
-insert into Montador values(1, 'José Hern�ndez', 'El Tecal', '6987-2323', 10);
-insert into Montador values(2, 'Eloy B�rbara', 'Mogoll�n, distrito de Macaracas', '6038-0339', 27);
+insert into Montador values(1, 'José Hernández', 'El Tecal', '6987-2323', 10);
+insert into Montador values(2, 'Eloy Bárbara', 'Mogollón, distrito de Macaracas', '6038-0339', 27);
 insert into Montador values(3, 'Carmina Cruz', 'Llano Grande, distrito de La Pintada', '6051-0332', 6);
 insert into Montador values(4, 'Juan Clementina', 'David Este, distrito de David', '6029-0221', 17);
-insert into Montador values(5, 'Laurentino Yoel', 'Metet�, distrito de Pinogana', '6067-0996', 27);
-insert into Montador values(6, 'Justina Alfonso', 'Sor�, distrito de Chame', '6023-0662', 26);
+insert into Montador values(5, 'Laurentino Yoel', 'Metetí, distrito de Pinogana', '6067-0996', 27);
+insert into Montador values(6, 'Justina Alfonso', 'Sorá, distrito de Chame', '6023-0662', 26);
 insert into Montador values(7, 'Florinda Ana', 'Sabanagrande, distrito de Los Santos', '6090-0360', 18);
-insert into Montador values(8, 'Rosenda Lolita', 'Monagrillo, distrito de Chitr�', '6098-0751', 18);
-insert into Montador values(9, 'Vito Anastacio', 'Los Asientos, distrito de Pedas�', '6046-0443', 33);
+insert into Montador values(8, 'Rosenda Lolita', 'Monagrillo, distrito de Chitré', '6098-0751', 18);
+insert into Montador values(9, 'Vito Anastacio', 'Los Asientos, distrito de Pedasí', '6046-0443', 33);
 insert into Montador values(10, 'Melchor Ismael', 'Santa Ana, distrito de Los Santos', '6083-0819', 30);
-insert into Montador values(11, 'Marita Ramiro', 'Mariab�, distrito de Pedas�', '6025-0705', 38);
+insert into Montador values(11, 'Marita Ramiro', 'Mariabé, distrito de Pedasí', '6025-0705', 38);
 
-insert into Cliente values(1, 'Estanislao Teresita', 'Juan Dem�stenes Arosemena, distrito de Arraij�n', '6057-0226');
-insert into Cliente values(2, 'Mar�a de Jes�s Chita', 'Uni�n Sante�a, distrito de Chim�n', '6087-0223');
+insert into Cliente values(1, 'Estanislao Teresita', 'Juan Demóstenes Arosemena, distrito de Arraiján', '6057-0226');
+insert into Cliente values(2, 'María de Jesús Chita', 'Unión Santeña, distrito de Chimán', '6087-0223');
 insert into Cliente values(3, 'Jacinto Filiberto', 'Las Cruces, distrito de Los Santos', '6085-0742');
-insert into Cliente values(4, 'Irene Alfredo', 'Llano Bonito, distrito de Chitr�', '6008-0497');
-insert into Cliente values(5, 'Fe Bego�a', 'Los Pozos, distrito de Los Pozos', '6039-0539');
-insert into Cliente values(6, 'El�as Romualdo', 'Purio, distrito de Pedas�', '6050-0246');
-insert into Cliente values(7, 'Jonatan Modesto', 'Tijeras, distrito de Boquer�n', '6010-0193');
+insert into Cliente values(4, 'Irene Alfredo', 'Llano Bonito, distrito de Chitré', '6008-0497');
+insert into Cliente values(5, 'Fe Begoña', 'Los Pozos, distrito de Los Pozos', '6039-0539');
+insert into Cliente values(6, 'Elías Romualdo', 'Purio, distrito de Pedasí', '6050-0246');
+insert into Cliente values(7, 'Jonatan Modesto', 'Tijeras, distrito de Boquerón', '6010-0193');
 insert into Cliente values(8, 'Reyna Carmelita', 'Bajo Boquete, distrito de Boquete', '6031-0678');
 insert into Cliente values(9, 'Ainara Olegario', 'La Garceana, distrito de Montijo', '6006-0350');
 insert into Cliente values(10, 'Odalis Hern�n', 'Santa Rosa, distrito de Bugaba', '6036-0419');
 
-insert into Distribuidor values(1, 'Hayd�e Roxana', 'Las Tablas, distrito de Changuinola', '2020-3-25');
+insert into Distribuidor values(1, 'Haydée Roxana', 'Las Tablas, distrito de Changuinola', '2020-3-25');
 insert into Distribuidor values(2, 'Rodolfo Tere', 'Santa Ana, distrito de Los Santos', '2020-2-21');
-insert into Distribuidor values(3, 'Eufemia Aitana', 'Nance de Risc�, distrito de Almirante', '2021-9-15');
-insert into Distribuidor values(4, 'Rosalinda Salom�n', 'Chepo, distrito de Las Minas', '2021-6-3');
-insert into Distribuidor values(5, 'Ovidio Julia', 'San Mart�n de Porres, distrito de Las Palmas', '2020-2-1');
+insert into Distribuidor values(3, 'Eufemia Aitana', 'Nance de Riscó, distrito de Almirante', '2021-9-15');
+insert into Distribuidor values(4, 'Rosalinda Salomón', 'Chepo, distrito de Las Minas', '2021-6-3');
+insert into Distribuidor values(5, 'Ovidio Julia', 'San Martín de Porres, distrito de Las Palmas', '2020-2-1');
 insert into Distribuidor values(6, 'Teodosio Mercedes', 'Finca 12, distrito de Changuinola', '2021-12-7');
 insert into Distribuidor values(7, 'Anastacia Emma', 'Cochea, distrito de David', '2022-10-17');
-insert into Distribuidor values(8, 'Jos� Sa�l', 'Los Algarrobos, distrito de Santiago', '2021-12-11');
-insert into Distribuidor values(9, 'Nando Paulina', 'Ca�azas, distrito de Ca�azas', '2023-4-17');
-insert into Distribuidor values(10, 'Carla Seraf�n', 'Ca�as Gordas, distrito de Renacimiento', '2022-1-8');
+insert into Distribuidor values(8, 'José Saúl', 'Los Algarrobos, distrito de Santiago', '2021-12-11');
+insert into Distribuidor values(9, 'Nando Paulina', 'Cañazas, distrito de Cañazas', '2023-4-17');
+insert into Distribuidor values(10, 'Carla Serafín', 'Cañas Gordas, distrito de Renacimiento', '2022-1-8');
 
 insert into TelefonoDistribuidor values(4, '6085-0007');
 insert into TelefonoDistribuidor values(10, '6097-0007');
@@ -185,16 +185,16 @@ insert into TelefonoDistribuidor values(5, '6083-0928');
 insert into TelefonoDistribuidor values(8, '6098-0113');
 insert into TelefonoDistribuidor values(9, '6016-0341');
 
-insert into Fabricante values(1, 'Iv�n Ignacio', 'La Arena, distrito de Los Pozos', '2020-4-13');
-insert into Fabricante values(2, 'Rolando Gregoria', 'La Raya de Santa Mar�a, distrito de Santiago', '2023-9-16');
-insert into Fabricante values(3, 'Mayte �rsula', 'Gobea, distrito de Donoso', '2023-1-22');
-insert into Fabricante values(4, 'Arturo Miguel �ngel', 'Boca Chica, distrito de San Lorenzo', '2023-9-21');
-insert into Fabricante values(5, 'Conrado Abilio', 'La Arena, distrito de Chitr�', '2020-5-18');
-insert into Fabricante values(6, 'Diana Flavia', 'Carlos Santana �vila, distrito de Santiago', '2022-2-10');
+insert into Fabricante values(1, 'Iván Ignacio', 'La Arena, distrito de Los Pozos', '2020-4-13');
+insert into Fabricante values(2, 'Rolando Gregoria', 'La Raya de Santa María, distrito de Santiago', '2023-9-16');
+insert into Fabricante values(3, 'Mayte Úrsula', 'Gobea, distrito de Donoso', '2023-1-22');
+insert into Fabricante values(4, 'Arturo Miguel Ángel', 'Boca Chica, distrito de San Lorenzo', '2023-9-21');
+insert into Fabricante values(5, 'Conrado Abilio', 'La Arena, distrito de Chitré', '2020-5-18');
+insert into Fabricante values(6, 'Diana Flavia', 'Carlos Santana Ávila, distrito de Santiago', '2022-2-10');
 insert into Fabricante values(7, 'Mauro Bruno', 'La Ensenada, distrito de Balboa', '2023-9-27');
-insert into Fabricante values(8, 'Am�lcar Eulogia', 'Bajo Corral, distrito de Las Tablas', '2023-11-13');
-insert into Fabricante values(9, 'Toni Bernardino', 'Los Castillos, distrito de R�o de Jes�s', '2022-8-14');
-insert into Fabricante values(10, 'Angelita Mauro', 'Don Bosco, distrito de Panam�', '2020-4-12');
+insert into Fabricante values(8, 'Amílcar Eulogia', 'Bajo Corral, distrito de Las Tablas', '2023-11-13');
+insert into Fabricante values(9, 'Toni Bernardino', 'Los Castillos, distrito de Río de Jesús', '2022-8-14');
+insert into Fabricante values(10, 'Angelita Mauro', 'Don Bosco, distrito de Panamá', '2020-4-12');
 
 insert into TelefonoFabricante values(10, '6073-0352');
 insert into TelefonoFabricante values(5, '6097-0257');
@@ -208,7 +208,7 @@ insert into TelefonoFabricante values(9, '6005-0781');
 insert into TelefonoFabricante values(9, '6092-0766');
 
 insert into Repartidor values(1, 'Inocencio Ana', 'InocencioAna@sharklasers.com', '6008-0303');
-insert into Repartidor values(2, 'Sebasti�n Cleto', 'SebastianCleto@yahoo.com', '6022-0074');
+insert into Repartidor values(2, 'Sebastián Cleto', 'SebastianCleto@yahoo.com', '6022-0074');
 insert into Repartidor values(3, 'Amaro Valente', 'AmaroValente@hotmail.com', '6067-0727');
 insert into Repartidor values(4, 'Fabio Sandra', 'FabioSandra@hotmail.com', '6052-0152');
 insert into Repartidor values(5, 'Alexandra Eneida', 'AlexandraEneida@yahoo.com', '6048-0368');
@@ -218,14 +218,14 @@ insert into Repartidor values(8, 'Manu Irene', 'ManuIrene@utp.ac.pa', '6002-0595
 insert into Repartidor values(9, 'Adelaida Gabino', 'AdelaidaGabino@hotmail.com', '6074-0854');
 insert into Repartidor values(10, 'Valeria Yenny', 'ValeriaYenny@utp.ac.pa', '6034-0167');
 
-insert into Vehiculo values('74LD0N1', '2011', 'Sed�n', '5', 'Corolla','Toyota');
+insert into Vehiculo values('74LD0N1', '2011', 'Sedán', '5', 'Corolla','Toyota');
 insert into Vehiculo values('54481X3', '2019', 'SUV', '5', 'Q3','Audi');
 insert into Vehiculo values('8436183', '2020', 'SUV', '7', 'Caddy','Volkswagen');
-insert into Vehiculo values('83Y0393', '2003', 'Sed�n', '5', 'A4','Audi');
+insert into Vehiculo values('83Y0393', '2003', 'Sedán', '5', 'A4','Audi');
 insert into Vehiculo values('49FF211', '2023', 'SUV', '7', 'XL7','Suzuki');
 insert into Vehiculo values('831U905', '2014', 'Camioneta', '2', 'Strada','Mitsubishi');
-insert into Vehiculo values('5239Z13', '2000', 'Sed�n', '5', 'A4','Audi');
-insert into Vehiculo values('9791964', '2007', 'Sed�n', '5', 'Optima LX','Kia');
+insert into Vehiculo values('5239Z13', '2000', 'Sedán', '5', 'A4','Audi');
+insert into Vehiculo values('9791964', '2007', 'Sedán', '5', 'Optima LX','Kia');
 insert into Vehiculo values('10L2656', '2023', 'Motocicleta', '2', 'R3','Yamaha');
 insert into Vehiculo values('J32T901', '2010', 'Motocicleta', '1', 'Piaggio','Vespa');
 
@@ -243,7 +243,7 @@ insert into MuebleCocina values(11, 'gris', 'Sicilia', 16.0, 17.2, 'panel', NULL
 insert into MuebleCocina values(12, 'gris', 'Escarlata', 16.9, 23.8, 'encimera', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 3);
 insert into MuebleCocina values(13, 'verde', 'Lorem', 27.5, 14.8, 'encimera', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 10);
 insert into MuebleCocina values(14, 'negro', 'Ensambla', 11.2, 30.0, 'mueble bajo', NULL, NULL, NULL, 7, 5, NULL, NULL, NULL, NULL, 4);
-insert into MuebleCocina values(15, 'marr�n', 'Ambar', 24.0, 29.2, 'encimera', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 5);
+insert into MuebleCocina values(15, 'marrón', 'Ambar', 24.0, 29.2, 'encimera', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1, 5);
 insert into MuebleCocina values(16, 'verde', 'Ambar', 22.9, 14.6, 'mueble alto', 14.6, 351, 6, NULL, NULL, NULL, NULL, NULL, NULL, 7);
 insert into MuebleCocina values(17, 'gris', 'El Pollito Feliz', 25.6, 30.3, 'mueble bajo', NULL, NULL, NULL, 9, 7, NULL, NULL, NULL, NULL, 6);
 insert into MuebleCocina values(18, 'verde', 'Aqua', 27.8, 24.4, 'mueble alto', 24.4, 286, 6, NULL, NULL, NULL, NULL, NULL, NULL, 2);
@@ -256,10 +256,10 @@ insert into MuebleCocina values(24, 'gris', 'Ambar', 20.4, 23.7, 'encimera', NUL
 insert into MuebleCocina values(25, 'verde', 'Lorem', 21.3, 17.1, 'mueble alto', 17.1, 391, 7, NULL, NULL, NULL, NULL, NULL, NULL, 6);
 insert into MuebleCocina values(26, 'azul', 'Escarlata', 15.5, 21.3, 'mueble alto', 21.3, 278, 5, NULL, NULL, NULL, NULL, NULL, NULL, 6);
 insert into MuebleCocina values(27, 'gris', 'Aqua', 26.7, 26.7, 'mueble alto', 26.7, 251, 6, NULL, NULL, NULL, NULL, NULL, NULL, 7);
-insert into MuebleCocina values(28, 'negro', 'Lorem', 28.1, 23.3, 'panel', NULL, NULL, NULL, NULL, NULL, 'm�rmol', 21.7, NULL, NULL, 9);
+insert into MuebleCocina values(28, 'negro', 'Lorem', 28.1, 23.3, 'panel', NULL, NULL, NULL, NULL, NULL, 'mármol', 21.7, NULL, NULL, 9);
 insert into MuebleCocina values(29, 'negro', 'Ambar', 13.4, 10.2, 'mueble alto', 10.2, 271, 1, NULL, NULL, NULL, NULL, NULL, NULL, 8);
 insert into MuebleCocina values(30, 'blanco', 'Ipsum', 10.5, 30.3, 'panel', NULL, NULL, NULL, NULL, NULL, 'madera', 14.5, NULL, NULL, 9);
-insert into MuebleCocina values(31, 'marr�n', 'Ensambla', 21.0, 26.0, 'mueble alto', 26.0, 272, 7, NULL, NULL, NULL, NULL, NULL, NULL, 5);
+insert into MuebleCocina values(31, 'marrón', 'Ensambla', 21.0, 26.0, 'mueble alto', 26.0, 272, 7, NULL, NULL, NULL, NULL, NULL, NULL, 5);
 insert into MuebleCocina values(32, 'gris', 'Aqua', 12.5, 29.0, 'panel', NULL, NULL, NULL, NULL, NULL, 'madera', 7.9, NULL, NULL, 9);
 insert into MuebleCocina values(33, 'verde', 'Ensambla', 30.2, 26.7, 'panel', NULL, NULL, NULL, NULL, NULL, 'madera', 17.7, NULL, NULL, 1);
 insert into MuebleCocina values(34, 'azul', 'Ipsum', 23.0, 12.4, 'mueble bajo', NULL, NULL, NULL, 1, 5, NULL, NULL, NULL, NULL, 2);
@@ -279,13 +279,13 @@ insert into MuebleCocina values(47, 'negro', 'Ambar', 14.3, 17.5, 'mueble bajo',
 insert into MuebleCocina values(48, 'verde', 'Lorem', 18.1, 28.4, 'mueble alto', 28.4, 334, 3, NULL, NULL, NULL, NULL, NULL, NULL, 5);
 insert into MuebleCocina values(49, 'azul', 'Ensambla', 17.8, 15.7, 'mueble bajo', NULL, NULL, NULL, 0, 1, NULL, NULL, NULL, NULL, 3);
 insert into MuebleCocina values(50, 'negro', 'Lorem', 14.3, 23.9, 'mueble alto', 23.9, 367, 5, NULL, NULL, NULL, NULL, NULL, NULL, 10);
-insert into MuebleCocina values(51, 'marr�n', 'Ipsum', 29.6, 26.6, 'mueble alto', 26.6, 358, 5, NULL, NULL, NULL, NULL, NULL, NULL, 7);
-insert into MuebleCocina values(52, 'marr�n', 'Lorem', 15.0, 28.4, 'mueble bajo', NULL, NULL, NULL, 5, 7, NULL, NULL, NULL, NULL, 9);
+insert into MuebleCocina values(51, 'marrón', 'Ipsum', 29.6, 26.6, 'mueble alto', 26.6, 358, 5, NULL, NULL, NULL, NULL, NULL, NULL, 7);
+insert into MuebleCocina values(52, 'marrón', 'Lorem', 15.0, 28.4, 'mueble bajo', NULL, NULL, NULL, 5, 7, NULL, NULL, NULL, NULL, 9);
 insert into MuebleCocina values(53, 'azul', 'Escarlata', 29.4, 12.3, 'panel', NULL, NULL, NULL, NULL, NULL, 'madera', 12.2, NULL, NULL, 5);
 insert into MuebleCocina values(54, 'blanco', 'Ipsum', 26.6, 13.9, 'mueble bajo', NULL, NULL, NULL, 1, 6, NULL, NULL, NULL, NULL, 9);
 insert into MuebleCocina values(55, 'azul', 'Aqua', 25.6, 26.4, 'encimera', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 7);
 insert into MuebleCocina values(56, 'gris', 'Aqua', 29.1, 24.4, 'panel', NULL, NULL, NULL, NULL, NULL, 'vidrio', 9.0, NULL, NULL, 6);
-insert into MuebleCocina values(57, 'marr�n', 'Escarlata', 29.4, 16.8, 'mueble bajo', NULL, NULL, NULL, 1, 4, NULL, NULL, NULL, NULL, 6);
+insert into MuebleCocina values(57, 'marrón', 'Escarlata', 29.4, 16.8, 'mueble bajo', NULL, NULL, NULL, 1, 4, NULL, NULL, NULL, NULL, 6);
 insert into MuebleCocina values(58, 'verde', 'Ensambla', 29.5, 17.3, 'encimera', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, 10);
 insert into MuebleCocina values(59, 'blanco', 'Ambar', 11.3, 20.1, 'panel', NULL, NULL, NULL, NULL, NULL, 'porcelana', 16.3, NULL, NULL, 2);
 insert into MuebleCocina values(60, 'gris', 'Sicilia', 11.4, 25.5, 'panel', NULL, NULL, NULL, NULL, NULL, 'madera', 10.9, NULL, NULL, 9);
@@ -297,7 +297,7 @@ insert into Cocina values(4, 823, 28, 'Denisse', 3, 10, 8);
 insert into Cocina values(5, 635, 21, 'Dorsitte', 10, 1, 1);
 insert into Cocina values(6, 553, 11, 'Eau duardo', 6, 5, 8);
 insert into Cocina values(7, 203, 4, 'Ensamblat', 7, 3, 8);
-insert into Cocina values(8, 291, 26, 'Seraf�n', 7, 5, 4);
+insert into Cocina values(8, 291, 26, 'Serafín', 7, 5, 4);
 insert into Cocina values(9, 230, 14, 'Aqua Lola', 6, 2, 2);
 insert into Cocina values(10, 239, 13, 'Virtudes', 8, 10, 6);
 
