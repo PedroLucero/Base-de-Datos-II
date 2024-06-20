@@ -106,20 +106,6 @@ DECLARE
     V_TELEFONO_CLIENTE TELEFONO_CLIENTE.NUM_TELEFONO%TYPE;
 BEGIN
     V_EDAD := CALCULAR_EDAD(V_FECHA_NACIMIENTO);
-    CARGAR_CLIENTE(
-        P_NOMBRE => V_NOMBRE,
-        P_APELLIDO => V_APELLIDO,
-        P_CEDULA => V_CEDULA,
-        P_SEXO => V_SEXO,
-        P_FECHA_NACIMIENTO => V_FECHA_NACIMIENTO,
-        P_PROFESION => V_PROFESION,
-        P_COD_SUCURSAL => V_COD_SUCURSAL,
-        P_EMAIL_CLIENTE => V_EMAIL_CLIENTE,
-        P_TIPO_EMAIL => V_TIPO_EMAIL,
-        P_TIPO_TELEFONO => V_TIPO_TELEFONO,
-        P_TELEFONO_CLIENTE => V_TELEFONO_CLIENTE
-    );
-    DBMS_OUTPUT.PUT_LINE('Cliente insertado correctamente');
     CARGAR_CLIENTE('Andres', 'Valdes', '6-726-1938', 'M', TO_DATE('03-06-2004', 'DD-MM-YYYY'), 2, 4, 'andres.valdes2@utp.ac.pa', 3, 1, '6609-0485');
     CARGAR_CLIENTE('Jose', 'Hernandez', '8-1002-2448', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'), 3, 2, 'jozzepher77@gmail.com', 1, 1, '6723-0263');
     CARGAR_CLIENTE('Pedro', 'Lucero', '8-1442-9148', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'), 5, 3, 'pedro.lucero@utp.ac.pa', 3, 1, '6997-2738');
