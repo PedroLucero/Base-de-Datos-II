@@ -47,8 +47,7 @@ BEGIN
             WHERE
                 V_ID_CLIENTE = P.ID_CLIENTE
                 AND V_ID_TIPO_PRESTAMO = P.ID_TIPO_PRESTAMO;
-            DBMS_OUTPUT.PUT_LINE('Saldo actual del préstamo obtenido: '
-                                 || V_SALDO);
+            DBMS_OUTPUT.PUT_LINE('Saldo actual del préstamo obtenido: ' || V_SALDO);
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
                 DBMS_OUTPUT.PUT_LINE('No se encontraron datos en PRESTAMO_CLIENTE para el cliente '
@@ -71,12 +70,10 @@ BEGIN
                 TIPO_PRESTAMO T
             WHERE
                 V_ID_TIPO_PRESTAMO = T.ID_TIPO_PRESTAMO;
-            DBMS_OUTPUT.PUT_LINE('Tasa obtenida: '
-                                 || V_TASA);
+            DBMS_OUTPUT.PUT_LINE('Tasa obtenida: ' || V_TASA);
         EXCEPTION
             WHEN NO_DATA_FOUND THEN
-                DBMS_OUTPUT.PUT_LINE('No se encontraron datos en TIPO_PRESTAMO para el tipo de préstamo '
-                                     || V_ID_TIPO_PRESTAMO);
+                DBMS_OUTPUT.PUT_LINE('No se encontraron datos en TIPO_PRESTAMO para el tipo de préstamo ' || V_ID_TIPO_PRESTAMO);
                 RAISE;
             WHEN OTHERS THEN
                 DBMS_OUTPUT.PUT_LINE('Error inesperado al obtener la tasa: '
@@ -96,11 +93,6 @@ BEGIN
         WHERE
             P.ID_CLIENTE = V_ID_CLIENTE
             AND P.ID_TIPO_PRESTAMO = V_ID_TIPO_PRESTAMO;
-        UPDATE SUCURSAL S
-        SET
-            MONTOPRESTAMOS = MONTOPRESTAMOS + V_INTERES - V_PAGO
-        WHERE
-            S.COD_SUCURSAL = V_COD_SUCURSAL;
     END LOOP;
  -- EXCEPTION
     COMMIT;
