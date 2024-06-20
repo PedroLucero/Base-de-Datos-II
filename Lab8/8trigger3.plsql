@@ -1,4 +1,4 @@
-CREATE OR REPLACE TRIGGER trg_update_sucursal_tipoprestamo
+CREATE OR REPLACE TRIGGER trg_sucursal_tipoprestamo
 AFTER INSERT OR UPDATE OR DELETE ON prestamo_cliente
 FOR EACH ROW
 DECLARE
