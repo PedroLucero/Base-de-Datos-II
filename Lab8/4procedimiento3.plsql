@@ -52,7 +52,7 @@ EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error al insertar el préstamo aprobado: '
                              || SQLERRM);
-END;
+END INSERTAR_PRESTAMO_APROBADO;
 /
 
 --Bloque anonimo
