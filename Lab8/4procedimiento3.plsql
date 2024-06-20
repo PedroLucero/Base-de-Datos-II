@@ -41,40 +41,6 @@ BEGIN
         SYSDATE,
         P_ID_USUARIO
     );
- -- Actualizar el monto de préstamos en la tabla SUCURSAL
-    SELECT
-        MONTOPRESTAMOS INTO V_MONTO_SUCURSAL
-    FROM
-        SUCURSAL
-    WHERE
-        COD_SUCURSAL = P_COD_SUCURSAL;
-    UPDATE SUCURSAL
-    SET
-        MONTOPRESTAMOS = V_MONTO_SUCURSAL + P_MONTO
-    WHERE
-        COD_SUCURSAL = P_COD_SUCURSAL;
-
-    /* SELECT
-        COUNT(*) INTO V_CANTIDAD_PRESTAMOS
-    FROM
-        SUCURSAL_TIPO_PRESTAMO
-    WHERE
-        ID_TIPO_PRESTAMO = P_ID_TIPO_PRESTAMO;
-    IF V_CANTIDAD_PRESTAMOS = 0 THEN
-        INSERT INTO SUCURSAL_TIPO_PRESTAMO VALUES(
-            P_COD_SUCURSAL,
-            P_ID_TIPO_PRESTAMO,
-            1
-        );
-    ELSE
-        UPDATE SUCURSAL_TIPO_PRESTAMO
-        SET
-            PRESTAMOS_ACTIVOS = PRESTAMOS_ACTIVOS + 1
-        WHERE
-            COD_SUCURSAL = P_COD_SUCURSAL
-            AND ID_TIPO_PRESTAMO = P_ID_TIPO_PRESTAMO;
-    END IF;*/
-
     COMMIT;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
@@ -86,7 +52,7 @@ EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error al insertar el préstamo aprobado: '
                              || SQLERRM);
-END;
+END INSERTAR_PRESTAMO_APROBADO;
 /
 
 --Bloque anonimo
