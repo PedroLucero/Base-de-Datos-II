@@ -92,7 +92,6 @@ END CARGAR_CLIENTE;
 /
 
 BEGIN
-    V_EDAD := CALCULAR_EDAD(V_FECHA_NACIMIENTO);
     CARGAR_CLIENTE('Andres', 'Valdes', '6-726-1938', 'M', TO_DATE('03-06-2004', 'DD-MM-YYYY'), 2, 4, 'andres.valdes2@utp.ac.pa', 3, 1, '6609-0485');
     CARGAR_CLIENTE('Jose', 'Hernandez', '8-1002-2448', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'), 3, 2, 'jozzepher77@gmail.com', 1, 1, '6723-0263');
     CARGAR_CLIENTE('Pedro', 'Lucero', '8-1442-9148', 'M', TO_DATE('08-12-2003', 'DD-MM-YYYY'), 5, 3, 'pedro.lucero@utp.ac.pa', 3, 1, '6997-2738');
