@@ -1,3 +1,32 @@
+/* 
+
+Detalles que estoy considerando para nomenclatura:
+Esto es más que nada para el workflow que mostraremos
+
+Paramétrico: algo que se setea de backend, están llenas de antemano y podrían tener procedimientos para más
+
+De negocio: Tablas que se llenan respecto se usa la BD, pueden empezar vacías
+
+Transacción: de relación P-N, P-P, N-N. Así como literalmente transacciones
+
+*/
+-- Secuencias para las tablas
+CREATE SEQUENCE SEQ_MONTADOR START WITH 1;
+
+CREATE SEQUENCE SEQ_CLIENTE START WITH 1;
+
+CREATE SEQUENCE SEQ_DISTRIBUIDOR START WITH 1;
+
+CREATE SEQUENCE SEQ_FABRICANTE START WITH 1;
+
+CREATE SEQUENCE SEQ_MUEBLE START WITH 1;
+
+CREATE SEQUENCE SEQ_COCINA START WITH 1;
+
+
+-- Todas las tablas
+
+-- Paramétrica
 create table Montador(
 	id number not null,
 	nombre varchar2(20) not null,
@@ -7,6 +36,7 @@ create table Montador(
     constraint montador_pk primary key (id)
 );
 
+-- Negocio
 create table Cliente(
 	id number not null,
 	nombre varchar2(20) not null,
@@ -15,6 +45,7 @@ create table Cliente(
     constraint cliente_pk primary key (id)
 );
 
+-- Paramétrica
 create table Distribuidor(
 	id number not null,
 	nombre varchar2(20) not null,
@@ -23,6 +54,7 @@ create table Distribuidor(
     constraint distribuidor_pk primary key (id)
 );
 
+-- Transaccion
 create table TelefonoDistribuidor(
 	id_Distribuidor number not null,
 	telefono varchar2(15) not null,
@@ -30,6 +62,7 @@ create table TelefonoDistribuidor(
 	constraint telefonodistribuidor_fk_distribuidor foreign key (id_Distribuidor) references Distribuidor (id)
 );
 
+-- Paramétrica
 create table Fabricante(
 	id number not null,
 	nombre varchar2(20) not null,
@@ -38,6 +71,7 @@ create table Fabricante(
     constraint fabricante_pk primary key(id)
 );
 
+-- Transaccion
 create table TelefonoFabricante(
 	id_Fabricante number not null,
 	telefono varchar2(15) not null,
@@ -45,6 +79,7 @@ create table TelefonoFabricante(
 	constraint telefonofabricante_fk_fabricante foreign key (id_Fabricante) references Fabricante (id)
 );
 
+-- Negocio
 create table Repartidor(
 	id number not null,
 	nombre varchar2(20) not null,
@@ -53,6 +88,7 @@ create table Repartidor(
     constraint repartidor_pk primary key (id)
 );
 
+-- Paramétrica
 create table Vehiculo(
 	placa varchar2(7) not null,
 	anho number not null,
@@ -63,7 +99,7 @@ create table Vehiculo(
     constraint vehiculo_pk primary key (id)
 );
 
-create table Mueble(
+create table Mueble( -- Estos son TIPOS de mueble
 	id number not null,
 	color varchar2(20) not null,
 	linea varchar2(20) not null,
@@ -97,6 +133,7 @@ create table Cocina(
 	constraint cocina_fk_distribuidor foreign key (ID_distribuidor) references Distribuidor (id)
 );
 
+-- Desde aquí todas T:
 create table MuebleEnCocina(
 	id_Mueble number not null,
 	id_Cocina number not null,
@@ -136,3 +173,7 @@ create table FabricanteDistribuidor(
 	constraint fabricantedistribuidor_fk_fabricante foreign key (id_Fabricante) references Fabricante (id),
 	constraint fabricantedistribuidor_fk_distribuidor foreign key (id_Distribuidor) references Distribuidor(id)
 );
+
+-- Falta añadir COMPRA_MUEBLE: En esta le compramos a los dist. muebles para nuestro inventario
+
+-- Falta añadir VENTA_COCINA: Para registrar venderle a los clientes las cocinas
