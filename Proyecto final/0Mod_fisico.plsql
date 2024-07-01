@@ -5,27 +5,21 @@ Esto es más que nada para el workflow que mostraremos
 
 Paramétrico: algo que se setea de backend, están llenas de antemano y podrían tener procedimientos para más
 
-De negocio: Tablas que se llenan respecto se usa la BD, pueden empezar vacías
+De negocio: tablas que se llenan respecto se usa la BD, pueden empezar vacías
 
-Transacción: de relación P-N, P-P, N-N. Así como literalmente transacciones
+Transacción: literalmente transacciones, compra y venta
 
 */
 -- Secuencias para las tablas
 CREATE SEQUENCE SEQ_MONTADOR START WITH 1;
-
-CREATE SEQUENCE SEQ_CLIENTE START WITH 1;
-
-CREATE SEQUENCE SEQ_DISTRIBUIDOR START WITH 1;
-
 CREATE SEQUENCE SEQ_FABRICANTE START WITH 1;
-
+CREATE SEQUENCE SEQ_DISTRIBUIDOR START WITH 1;
+CREATE SEQUENCE SEQ_CLIENTE START WITH 1;
+CREATE SEQUENCE SEQ_REPARTIDOR START WITH 1;
 CREATE SEQUENCE SEQ_MUEBLE START WITH 1;
-
 CREATE SEQUENCE SEQ_COCINA START WITH 1;
 
-
 -- Todas las tablas
-
 -- Paramétrica
 create table Montador(
 	id number not null,
@@ -50,16 +44,14 @@ create table Distribuidor(
 	id number not null,
 	nombre varchar2(20) not null,
 	direccion varchar2(50) not null,
-	fecha date not null,
     constraint distribuidor_pk primary key (id)
 );
 
--- Transaccion
 create table TelefonoDistribuidor(
 	id_Distribuidor number not null,
 	telefono varchar2(15) not null,
 	constraint telefonodistribuidor_pk primary key (id_Distribuidor, telefono),
-	constraint telefonodistribuidor_fk_distribuidor foreign key (id_Distribuidor) references Distribuidor (id)
+	constraint teldist_fk_dist foreign key (id_Distribuidor) references Distribuidor (id)
 );
 
 -- Paramétrica
@@ -71,12 +63,11 @@ create table Fabricante(
     constraint fabricante_pk primary key(id)
 );
 
--- Transaccion
 create table TelefonoFabricante(
 	id_Fabricante number not null,
 	telefono varchar2(15) not null,
 	constraint telefonofabricante_pk primary key (id_Fabricante, telefono),
-	constraint telefonofabricante_fk_fabricante foreign key (id_Fabricante) references Fabricante (id)
+	constraint telfabr_fk_fabr foreign key (id_Fabricante) references Fabricante (id)
 );
 
 -- Negocio
@@ -90,7 +81,8 @@ create table Repartidor(
 
 -- Paramétrica
 create table Vehiculo(
-	placa varchar2(7) not null,
+	id number not null,
+	placa varchar2(7) not null unique,
 	anho number not null,
 	tipo varchar2(20) not null,
 	capacidad number not null,
@@ -113,11 +105,13 @@ create table Mueble( -- Estos son TIPOS de mueble
 	num_divisiones number,
 	material varchar2(20), --Paneles
 	t_componente varchar2(20),
-	marmol bit, --Encimeras
-	algomerado bit,
+	marmol number(1,0), --Encimeras
+	aglomerado number(1,0),
 	ID_fabricante number,
     constraint mueble_pk primary key (id),
-	constraint mueble_fk_fabricante foreign key (ID_fabricante) references Fabricante (id)
+	constraint mueble_fk_fabricante foreign key (ID_fabricante) references Fabricante (id),
+	constraint check_marmol check (marmol in (1,0)),
+	constraint check_aglom check (aglomerado in (1,0))
 );
 
 create table Cocina(
@@ -128,52 +122,54 @@ create table Cocina(
 	numMuebles number not null,
 	ID_repartidor number not null,
 	ID_distribuidor number not null,
+	fecha_compra date,
 	constraint cocina_pk primary key (id, numSerie),
 	constraint cocina_fk_repartidor foreign key (ID_repartidor) references Repartidor (id),
 	constraint cocina_fk_distribuidor foreign key (ID_distribuidor) references Distribuidor (id)
 );
 
--- Desde aquí todas T:
 create table MuebleEnCocina(
-	id_Mueble number not null,
-	id_Cocina number not null,
-	constraint mueblecocina_pk primary key(id_Mueble, id_Cocina),
-	constraint mueblecocina_fk_mueble foreign key (id_Mueble) references Mueble (id),
-	constraint mueblecocina_fk_cocina foreign key (id_Cocina) references Cocina (id)
+	id_mueble number not null,
+	id_cocina number not null,
+	constraint mueblecocina_pk primary key(id_mueble, id_cocina),
+	constraint mueblecocina_fk_mueble foreign key (id_mueble) references Mueble (id),
+	constraint mueblecocina_fk_cocina foreign key (id_cocina) references Cocina (id)
 );
 
 create table CocinaMontador(
-	id_Cocina number not null,
-	id_Montador number not null,
-	constraint cocinamontador_pk primary key(id_Mueble, id_Cocina),
-	constraint cocinamontador_fk_cocina foreign key (id_Cocina) references Cocina (id),
-	constraint cocinamontador_fk_mueble foreign key (id_Montador) references Montador (id)
-);
-
-create table CocinaCliente(
-	id_Cocina number not null,
-	id_Cliente number not null,
-	constraint cocinacliente_pk primary key(id_Mueble, id_Cocina),
-	constraint cocinacliente_fk_cocina foreign key (id_Cocina) references Cocina (id),
-	constraint cocinacliente_fk_cliente foreign key (id_Cliente) references Cliente (id)
+	id_cocina number not null,
+	id_montador number not null,
+	constraint cocinamontador_pk primary key(id_cocina, id_montador),
+	constraint cocinamontador_fk_cocina foreign key (id_cocina) references Cocina (id),
+	constraint cocinamontador_fk_mueble foreign key (id_montador) references Montador (id)
 );
 
 create table VehiculoRepartidor(
 	placa varchar2(7) not null,
 	id_Repartidor number not null,
-	constraint vehiculorepartidor_pk primary key (placa, id_Repartidor),
-	constraint vehiculorepartidor_fk_vehiculo foreign key (placa) references Vehiculo (placa),
-	constraint vehiculorepartidor_fk_repartidor foreign key (id_Repartidor) references Repartidor(id)
+	constraint vehirep_pk primary key (placa, id_Repartidor),
+	constraint vehirep_fk_vehi foreign key (placa) references Vehiculo (placa),
+	constraint vehirep_fk_rep foreign key (id_Repartidor) references Repartidor(id)
 );
 
 create table FabricanteDistribuidor(
 	id_Fabricante number not null,
 	id_Distribuidor number not null,
-	constraint fabricantedistribuidor_pk primary key (id_Fabricante, id_Distribuidor),
-	constraint fabricantedistribuidor_fk_fabricante foreign key (id_Fabricante) references Fabricante (id),
-	constraint fabricantedistribuidor_fk_distribuidor foreign key (id_Distribuidor) references Distribuidor(id)
+	constraint fabrdist_pk primary key (id_Fabricante, id_Distribuidor),
+	constraint fabrdist_fk_fabr foreign key (id_Fabricante) references Fabricante (id),
+	constraint fabrdist_fk_dist foreign key (id_Distribuidor) references Distribuidor(id)
 );
 
--- Falta añadir COMPRA_MUEBLE: En esta le compramos a los dist. muebles para nuestro inventario
+-- Tablas de Transaccion:
+create table VentaCocina(
+	num_factura number not null,
+	id_cocina number not null,
+	id_cliente number not null,
+	fecha date not null,
+	constraint cocinacliente_pk primary key(num_factura),
+	constraint cocinacliente_fk_cocina foreign key (id_cocina) references Cocina (id),
+	constraint cocinacliente_fk_cliente foreign key (id_cliente) references Cliente (id)
+);
 
--- Falta añadir VENTA_COCINA: Para registrar venderle a los clientes las cocinas
+-- Falta añadir COMPRA_COCINA
+-- Realmente creo que no, por la regla de 1 dist para cada cocina
