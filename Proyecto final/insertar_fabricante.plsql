@@ -1,8 +1,8 @@
 CREATE OR REPLACE PROCEDURE INSERTAR_FABRICANTE(
     p_NOMBRE FABRICANTE.NOMBRE%TYPE,
     p_DIRECCION FABRICANTE.DIRECCION%TYPE,
-    p_FECHA FABRICANTE.FECHA%TYPE,
-    p_TELEFONO TELEFONOFABRICANTE.TELEFONO%TYPE
+    p_TELEFONO TELEFONOFABRICANTE.TELEFONO%TYPE,
+    p_FECHA FABRICANTE.FECHA%TYPE
 ) IS 
 BEGIN
     INSERT INTO FABRICANTE(ID, NOMBRE, DIRECCION, FECHA)
@@ -18,6 +18,9 @@ END;
 
 -- Prueba
 BEGIN
-    INSERTAR_FABRICANTE('Constructor Hermanos', 'Boca Chica, distrito de San Lorenzo', sysdate, '6123-4567');
+    INSERTAR_FABRICANTE('Constructor Hermanos', 'Boca Chica, distrito de San Lorenzo', '6123-4567', sysdate);
+    INSERTAR_FABRICANTE('Iván Ignacio', 'La Arena, distrito de Los Pozos', '2020-4-13', sysdate);
+    INSERTAR_FABRICANTE('Rolando Gregoria', 'La Raya de Santa María, distrito de Santiago', '2023-9-16', sysdate);
+    INSERTAR_FABRICANTE('Mayte Úrsula', 'Gobea, distrito de Donoso', '2023-1-22', sysdate);
 END;
 /

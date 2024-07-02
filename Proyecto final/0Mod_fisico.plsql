@@ -16,6 +16,7 @@ CREATE SEQUENCE SEQ_FABRICANTE START WITH 1;
 CREATE SEQUENCE SEQ_DISTRIBUIDOR START WITH 1;
 CREATE SEQUENCE SEQ_CLIENTE START WITH 1;
 CREATE SEQUENCE SEQ_REPARTIDOR START WITH 1;
+CREATE SEQUENCE SEQ_VEHICULO START WITH 1;
 CREATE SEQUENCE SEQ_MUEBLE START WITH 1;
 CREATE SEQUENCE SEQ_COCINA START WITH 1;
 
@@ -74,7 +75,7 @@ create table TelefonoFabricante(
 create table Repartidor(
 	id number not null,
 	nombre varchar2(20) not null,
-	correo varchar2(320) not null,
+	correo varchar2(60) not null,
 	telefono varchar2(15) not null,
     constraint repartidor_pk primary key (id)
 );
@@ -91,15 +92,21 @@ create table Vehiculo(
     constraint vehiculo_pk primary key (id)
 );
 
-create table Mueble( -- Estos son TIPOS de mueble
+CREATE TABLE TIPO_MUEBLE( -- 1=ALTO, 2=BAJO, 3=PANEL, 4=ENCIMERA
+	ID_TIPO NUMBER NOT NULL,
+	NOMBRE VARCHAR2(20) NOT NULL,
+	CONSTRAINT TIPO_MUEBLE_PK PRIMARY KEY(ID_TIPO)
+);
+
+create table Mueble( -- Estos son MODELOS de mueble
 	id number not null,
 	color varchar2(20) not null,
 	linea varchar2(20) not null,
 	ancho decimal(3,1) not null,
 	alto decimal(3,1) not null,
-	tipo_mueble varchar2(20) not null,
+	tipo_mueble number not null,
 	altura decimal(10,1), --Mueble alto
-	C_peso number,
+	C_peso number, -- ← esto es, capacidad de peso
 	Divisiones number,
 	Altura_suelo decimal(10,1), --Mueble bajo
 	num_divisiones number,
@@ -109,12 +116,13 @@ create table Mueble( -- Estos son TIPOS de mueble
 	aglomerado number(1,0),
 	ID_fabricante number,
     constraint mueble_pk primary key (id),
+	constraint mueble_fk_tipo foreign key (tipo_mueble) references TIPO_MUEBLE (ID_TIPO),
 	constraint mueble_fk_fabricante foreign key (ID_fabricante) references Fabricante (id),
 	constraint check_marmol check (marmol in (1,0)),
 	constraint check_aglom check (aglomerado in (1,0))
 );
 
-create table Cocina(
+create table Cocina( -- MODELO
 	id number unique not null,
 	numSerie number not null,
 	inStock number not null,
@@ -164,6 +172,7 @@ create table FabricanteDistribuidor(
 create table VentaCocina(
 	num_factura number not null,
 	id_cocina number not null,
+	cantidad number not null,
 	id_cliente number not null,
 	fecha date not null,
 	constraint cocinacliente_pk primary key(num_factura),

@@ -18,5 +18,8 @@ END;
 -- Prueba
 BEGIN
     INSERTAR_DISTRIBUIDOR('Mako Solutions', 'La Arena, distrito de Los Pozos', '6000-0001');
+    INSERTAR_DISTRIBUIDOR('Haydée Roxana', 'Las Tablas, distrito de Changuinola', '6085-0007');
+    INSERTAR_DISTRIBUIDOR('Rodolfo Tere', 'Santa Ana, distrito de Los Santos', '6097-0007');
+    INSERTAR_DISTRIBUIDOR('Rosalinda Salomón', 'Chepo, distrito de Las Minas', '6003-0347');
 END;
 /

@@ -13,6 +13,7 @@ DROP TABLE VentaCocina;
 DROP TABLE CocinaMontador;
 DROP TABLE MuebleEnCocina;
 DROP TABLE Cocina;
+DROP TABLE TIPO_MUEBLE;
 DROP TABLE Mueble;
 DROP TABLE Vehiculo;
 DROP TABLE Repartidor;

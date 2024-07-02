@@ -14,6 +14,9 @@ END;
 
 -- Prueba
 BEGIN
-    INSERTAR_REPARTIDOR('Juan Makoto', 'Bajo Corral, distrito de Las Tablas', '6000-0003');
+    INSERTAR_REPARTIDOR('Inocencio Ana', 'InocencioAna@sharklasers.com', '6008-0303');
+    INSERTAR_REPARTIDOR('Sebastián Cleto', 'SebastianCleto@yahoo.com', '6022-0074');
+    INSERTAR_REPARTIDOR('Amaro Valente', 'AmaroValente@hotmail.com', '6067-0727');
+    INSERTAR_REPARTIDOR('Fabio Sandra', 'FabioSandra@hotmail.com', '6052-0152');
 END;
 /

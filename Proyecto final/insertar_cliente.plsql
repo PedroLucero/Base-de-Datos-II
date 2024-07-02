@@ -15,5 +15,8 @@ END;
 -- Prueba
 BEGIN
     INSERTAR_CLIENTE('Paolo Linares', 'Carlos Santana Ávila, distrito de Santiago', '6000-0002');
+    INSERTAR_CLIENTE('Irene Alfredo', 'Llano Bonito, distrito de Chitré', '6008-0497');
+    INSERTAR_CLIENTE('Fe Begoña', 'Los Pozos, distrito de Los Pozos', '6039-0539');
+    INSERTAR_CLIENTE('Elías Romualdo', 'Purio, distrito de Pedasí', '6050-0246');
 END;
 /
