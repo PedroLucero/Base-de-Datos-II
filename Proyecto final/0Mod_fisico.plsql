@@ -99,14 +99,12 @@ create table Mueble( -- Estos son MODELOS de mueble
 	num_divisiones number,
 	material varchar2(20), --Paneles
 	t_componente varchar2(20),
-	marmol number(1,0), --Encimeras	
-	aglomerado number(1,0),
+	mat_enc char, --Encimeras	
 	ID_fabricante number,
     constraint mueble_pk primary key (id),
 	constraint mueble_fk_tipo foreign key (tipo_mueble) references TIPO_MUEBLE (ID_TIPO),
 	constraint mueble_fk_fabricante foreign key (ID_fabricante) references Fabricante (id),
-	constraint check_marmol check (marmol in (1,0)),
-	constraint check_aglom check (aglomerado in (1,0))
+	constraint check_mat_enc check (mat_enc in ('M','A'))
 );
 
 create table Cocina( -- MODELO
