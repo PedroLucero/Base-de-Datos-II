@@ -1,4 +1,3 @@
--- no probado
 CREATE OR REPLACE PROCEDURE INSERTAR_MUEBLE_ALTO(
     p_COLOR MUEBLE.COLOR%TYPE,
     p_LINEA MUEBLE.LINEA%TYPE,
@@ -18,7 +17,7 @@ BEGIN
                         ALTURA_SUELO, NUM_DIVISIONES,
                         MATERIAL, T_COMPONENTE,
                         MAT_ENC, ID_FABRICANTE)
-    VALUES(SEQ_MUEBLE.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
+    VALUES(SEQ_PRODUCTO.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
             p_ALTURA, p_PESO, p_DIVISIONES,
             NULL, NULL,
             NULL, NULL,
@@ -47,7 +46,7 @@ BEGIN
                         ALTURA_SUELO, NUM_DIVISIONES,
                         MATERIAL, T_COMPONENTE,
                         MAT_ENC, ID_FABRICANTE)
-    VALUES(SEQ_MUEBLE.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
+    VALUES(SEQ_PRODUCTO.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
             NULL, NULL, NULL,
             p_ALTURA_SUELO, p_NUM_DIV,
             NULL, NULL,
@@ -76,7 +75,7 @@ BEGIN
                         ALTURA_SUELO, NUM_DIVISIONES,
                         MATERIAL, T_COMPONENTE,
                         MAT_ENC, ID_FABRICANTE)
-    VALUES(SEQ_MUEBLE.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
+    VALUES(SEQ_PRODUCTO.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
             NULL, NULL, NULL,
             NULL, NULL,
             p_MATERIAL, p_TIP_COMP,
@@ -104,7 +103,7 @@ BEGIN
                         ALTURA_SUELO, NUM_DIVISIONES,
                         MATERIAL, T_COMPONENTE,
                         MAT_ENC, ID_FABRICANTE)
-    VALUES(SEQ_MUEBLE.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
+    VALUES(SEQ_PRODUCTO.NEXTVAL, p_COLOR, p_LINEA, p_ANCHO, p_ALTO, p_PRECIO, p_FECHA, TIPO,
             NULL, NULL, NULL,
             NULL, NULL,
             NULL, NULL,p_MATERIAL, p_FABRICANTE);
@@ -114,11 +113,21 @@ EXCEPTION
 END;
 /
 
+BEGIN
+    -- Estos 4 inserts por si no están todavía
+    INSERT INTO TIPO_MUEBLE VALUES(1, 'Mueble Alto');
+    INSERT INTO TIPO_MUEBLE VALUES(2, 'Mueble Bajo');
+    INSERT INTO TIPO_MUEBLE VALUES(3, 'Panel');
+    INSERT INTO TIPO_MUEBLE VALUES(4, 'Encimera');
+END;
+
 -- Prueba
 BEGIN
+    -- También se requiere tener fabricantes
     INSERTAR_MUEBLE_ALTO('negro', 'Lorem', 30.1, 16.9, 100, SYSDATE, 16.9, 259, 7, 1);
     INSERTAR_MUEBLE_BAJO('negro', 'Lorem', 21.0, 29.4, 100, SYSDATE, 9, 4, 2);
     INSERTAR_MUEBLE_PANEL('verde', 'Sicilia', 16.4, 30.1, 100, SYSDATE, 'vidrio', 13.5, 3);
     INSERTAR_MUEBLE_ENCIMERA('gris', 'Aqua', 30.4, 14.3, 100, SYSDATE, 'A', 4);
+    INSERTAR_MUEBLE_ENCIMERA('blanco', 'Shallot', 20.4, 11.3, 100, SYSDATE, 'M', 1);
 END;
 /
