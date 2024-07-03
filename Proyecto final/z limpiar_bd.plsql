@@ -1,13 +1,11 @@
 -- drop secuencias
 DROP SEQUENCE SEQ_MONTADOR;
 DROP SEQUENCE SEQ_CLIENTE;
-DROP SEQUENCE SEQ_DISTRIBUIDOR;
 DROP SEQUENCE SEQ_FABRICANTE;
 DROP SEQUENCE SEQ_MUEBLE;
 DROP SEQUENCE SEQ_COCINA;
 
 -- drop tablas
-DROP TABLE FabricanteDistribuidor;
 DROP TABLE VehiculoRepartidor;
 DROP TABLE VentaCocina;
 DROP TABLE CocinaMontador;
@@ -19,7 +17,5 @@ DROP TABLE Vehiculo;
 DROP TABLE Repartidor;
 DROP TABLE TelefonoFabricante;
 DROP TABLE Fabricante;
-DROP TABLE TelefonoDistribuidor;
-DROP TABLE Distribuidor;
 DROP TABLE Cliente;
 DROP TABLE Montador;
