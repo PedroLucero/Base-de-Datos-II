@@ -19,11 +19,20 @@ CREATE SEQUENCE SEQ_VEHICULO START WITH 1;
 CREATE SEQUENCE SEQ_PRODUCTO START WITH 1;
 CREATE SEQUENCE SEQ_COMPRA START WITH 1;
 CREATE SEQUENCE SEQ_VENTA START WITH 1;
+CREATE SEQUENCE SEQ_USUARIO START WITH 1;
 -- CREATE SEQUENCE SEQ_MUEBLE START WITH 1;
 -- CREATE SEQUENCE SEQ_COCINA START WITH 1;
 
 -- Todas las tablas
 -- Paramétrica
+create table Usuario(
+	id number not null,
+	nombre VARCHAR2(25),
+	telefono VARCHAR2(15),
+	direccion VARCHAR2(50),
+	constraint usuario_pk primary key (id)
+);
+
 create table Montador(
 	id number not null,
 	nombre varchar2(20) not null,
