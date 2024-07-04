@@ -161,7 +161,9 @@ CREATE TABLE COMPRA(
 	FACTURA_FABRICANTE NUMBER NOT NULL, -- esto es lo que mantiene el fabricante
 	ID_FABRICANTE NUMBER NOT NULL,
 	MONTO NUMBER (6,2) NOT NULL,
+	ID_USUARIO NUMBER,
 	CONSTRAINT COMPRA_PK PRIMARY KEY (ID_COMPRA),
+	constraint compra_fk_usuario foreign key (ID_USUARIO) references USUARIO (id)
 	CONSTRAINT COMPRA_FK_FABR FOREIGN KEY (ID_FABRICANTE) REFERENCES FABRICANTE (ID)
 );
 
@@ -183,6 +185,7 @@ create table VENTA(
 	ID_USUARIO NUMBER NOT NULL,
 	fecha_VENTA date not null,
 	constraint ventacocina_pk primary key(num_factura),
+	constraint ventacocina_fk_usuario foreign key (ID_USUARIO) references USUARIO (id),
 	constraint ventacocina_fk_cliente foreign key (id_cliente) references Cliente (id)
 );
 
