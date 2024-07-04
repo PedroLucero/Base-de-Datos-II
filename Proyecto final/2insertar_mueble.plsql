@@ -120,6 +120,7 @@ BEGIN
     INSERT INTO TIPO_MUEBLE VALUES(3, 'Panel');
     INSERT INTO TIPO_MUEBLE VALUES(4, 'Encimera');
 END;
+/
 
 -- Prueba
 BEGIN
