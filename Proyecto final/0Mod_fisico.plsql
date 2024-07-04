@@ -157,6 +157,7 @@ create table VehiculoRepartidor(
 -- Tablas de Transaccion:
 CREATE TABLE COMPRA(
 	ID_COMPRA NUMBER NOT NULL,
+	ID_USUARIO NUMBER NOT NULL,
 	FACTURA_FABRICANTE NUMBER NOT NULL, -- esto es lo que mantiene el fabricante
 	ID_FABRICANTE NUMBER NOT NULL,
 	MONTO NUMBER (6,2) NOT NULL,
