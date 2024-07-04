@@ -39,7 +39,7 @@ BEGIN
     INSERT INTO ENTREGA(NUM_FACTURA, ID_REPARTIDOR, ID_MONTADOR, FECHA_ASIGNADA)
     VALUES(SEQ_VENTA.CURRVAL, p_ID_REPARTIDOR, p_ID_MONTADOR, p_FECHA_ENTREGA);
 
-    -- COMMIT;
+    COMMIT;
 EXCEPTION
 -- añadir excp de fk cuando fabricante no existe
 -- añadir excp cuando mueble no existe

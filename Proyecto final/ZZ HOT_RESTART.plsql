@@ -3,6 +3,7 @@ DROP SEQUENCE SEQ_VENTA;
 DROP SEQUENCE SEQ_MONTADOR;
 DROP SEQUENCE SEQ_FABRICANTE;
 DROP SEQUENCE SEQ_CLIENTE;
+DROP SEQUENCE SEQ_USUARIO;
 DROP SEQUENCE SEQ_REPARTIDOR;
 DROP SEQUENCE SEQ_VEHICULO;
 DROP SEQUENCE SEQ_PRODUCTO;
@@ -27,6 +28,7 @@ DROP TABLE Repartidor;
 DROP TABLE TelefonoFabricante;
 DROP TABLE Fabricante;
 DROP TABLE Cliente;
+DROP TABLE USUARIO;
 DROP TABLE Montador;
 
 /* 
@@ -439,6 +441,7 @@ BEGIN
             NULL, NULL,
             NULL, NULL,
             NULL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Este mueble alto ya existe');
@@ -469,6 +472,7 @@ BEGIN
             p_ALTURA_SUELO, p_NUM_DIV,
             NULL, NULL,
             NULL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Este mueble bajo ya existe');
@@ -499,6 +503,7 @@ BEGIN
             NULL, NULL,
             p_MATERIAL, p_TIP_COMP,
             NULL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Este panel ya existe');
@@ -527,6 +532,7 @@ BEGIN
             NULL, NULL, NULL,
             NULL, NULL,
             NULL, NULL,p_MATERIAL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Esta encimera ya existe');
@@ -579,7 +585,7 @@ BEGIN
         WHERE ID = TEMP_ID;
     END LOOP;
 
-    -- COMMIT;
+    COMMIT;
 EXCEPTION
 -- añadir excp cuando mueble no existe
     WHEN DUP_VAL_ON_INDEX THEN
@@ -602,6 +608,15 @@ BEGIN
     v_PRECIO := 1200;
     v_MUEBLES := SYS.ODCINUMBERLIST(2, 3, 4);
     v_CANTIDADES := SYS.ODCINUMBERLIST(1, 2, 1);
+    
+    INSERTAR_COCINA(v_NUMSERIE, v_INSTOCK, v_NOMBRE, v_PRECIO, v_MUEBLES, v_CANTIDADES);
+
+    v_NUMSERIE := 20202;
+    v_INSTOCK := 20;
+    v_NOMBRE := 'Lauretta';
+    v_PRECIO := 1250;
+    v_MUEBLES := SYS.ODCINUMBERLIST(1, 5);
+    v_CANTIDADES := SYS.ODCINUMBERLIST(5, 1);
     
     INSERTAR_COCINA(v_NUMSERIE, v_INSTOCK, v_NOMBRE, v_PRECIO, v_MUEBLES, v_CANTIDADES);
 END;
@@ -746,7 +761,7 @@ BEGIN
         VALUES (SEQ_COMPRA.CURRVAL, p_MUEBLES(i), p_CANTIDADES(i));
     END LOOP;
 
-    -- COMMIT;
+    COMMIT;
 EXCEPTION
 -- añadir excp de fk cuando fabricante no existe
 -- añadir excp cuando mueble no existe
@@ -817,7 +832,7 @@ BEGIN
     INSERT INTO ENTREGA(NUM_FACTURA, ID_REPARTIDOR, ID_MONTADOR, FECHA_ASIGNADA)
     VALUES(SEQ_VENTA.CURRVAL, p_ID_REPARTIDOR, p_ID_MONTADOR, p_FECHA_ENTREGA);
 
-    -- COMMIT;
+    COMMIT;
 EXCEPTION
 -- añadir excp de fk cuando fabricante no existe
 -- añadir excp cuando mueble no existe
@@ -925,7 +940,7 @@ SELECT
     c.telefono AS Telefono
 FROM
     VENTA v 
-JOIN Cliente c ON v.id_cliente = c.id
+JOIN Cliente c ON v.id_cliente = c.id;
 
 -- vista de inventario 
 CREATE OR REPLACE VIEW vista_inventario AS

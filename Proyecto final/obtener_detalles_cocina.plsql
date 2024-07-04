@@ -8,19 +8,9 @@ CREATE OR REPLACE PROCEDURE obtener_detalles_cocina (
             c.numSerie AS num_serie,
             c.inStock AS en_stock,
             c.nombre AS cocina_nombre,
-            c.numMuebles AS num_muebles,
-            c.fecha_compra AS fecha_compra,
-            r.nombre AS repartidor_nombre,
-            r.correo AS repartidor_correo,
-            r.telefono AS repartidor_telefono,
-            d.nombre AS distribuidor_nombre,
-            d.direccion AS distribuidor_direccion
+            c.numMuebles AS num_muebles
         FROM 
             Cocina c
-        JOIN 
-            Repartidor r ON c.ID_repartidor = r.id
-        JOIN 
-            Distribuidor d ON c.ID_distribuidor = d.id
         WHERE 
             c.id = p_id_cocina AND c.numSerie = p_num_serie;
 
@@ -38,8 +28,7 @@ CREATE OR REPLACE PROCEDURE obtener_detalles_cocina (
             m.Altura_suelo AS altura_suelo,
             m.material AS material,
             m.t_componente AS tipo_componente,
-            m.marmol AS es_marmol,
-            m.aglomerado AS es_aglomerado,
+            m.mat_enc AS material_encimera,
             f.nombre AS fabricante_nombre,
             f.direccion AS fabricante_direccion,
             f.fecha AS fabricante_fecha
@@ -60,12 +49,6 @@ CREATE OR REPLACE PROCEDURE obtener_detalles_cocina (
     v_en_stock NUMBER;
     v_cocina_nombre VARCHAR2(100);
     v_num_muebles NUMBER;
-    v_fecha_compra DATE;
-    v_repartidor_nombre VARCHAR2(100);
-    v_repartidor_correo VARCHAR2(100);
-    v_repartidor_telefono VARCHAR2(15);
-    v_distribuidor_nombre VARCHAR2(100);
-    v_distribuidor_direccion VARCHAR2(100);
 
     -- Variables para almacenar los resultados de los muebles
     v_mueble_id NUMBER;
@@ -80,8 +63,7 @@ CREATE OR REPLACE PROCEDURE obtener_detalles_cocina (
     v_altura_suelo NUMBER;
     v_material VARCHAR2(50);
     v_tipo_componente VARCHAR2(50);
-    v_es_marmol NUMBER;
-    v_es_aglomerado NUMBER;
+    v_mat_enc char;
     v_fabricante_nombre VARCHAR2(100);
     v_fabricante_direccion VARCHAR2(100);
     v_fabricante_fecha DATE;
@@ -89,17 +71,13 @@ BEGIN
     -- Obtener los detalles de la cocina
     OPEN c_cocina;
     FETCH c_cocina INTO
-        v_cocina_id, v_num_serie, v_en_stock, v_cocina_nombre, v_num_muebles, v_fecha_compra,
-        v_repartidor_nombre, v_repartidor_correo, v_repartidor_telefono,
-        v_distribuidor_nombre, v_distribuidor_direccion;
+        v_cocina_id, v_num_serie, v_en_stock, v_cocina_nombre, v_num_muebles;
     CLOSE c_cocina;
 
     -- Imprimir los detalles de la cocina
     DBMS_OUTPUT.PUT_LINE('Cocina ID: ' || v_cocina_id || ', Número de Serie: ' || v_num_serie);
     DBMS_OUTPUT.PUT_LINE('Nombre: ' || v_cocina_nombre || ', En Stock: ' || v_en_stock);
-    DBMS_OUTPUT.PUT_LINE('Número de Muebles: ' || v_num_muebles || ', Fecha de Compra: ' || v_fecha_compra);
-    DBMS_OUTPUT.PUT_LINE('Repartidor: ' || v_repartidor_nombre || ', Correo: ' || v_repartidor_correo || ', Teléfono: ' || v_repartidor_telefono);
-    DBMS_OUTPUT.PUT_LINE('Distribuidor: ' || v_distribuidor_nombre || ', Dirección: ' || v_distribuidor_direccion);
+    DBMS_OUTPUT.PUT_LINE('Número de Muebles: ' || v_num_muebles);
 
     -- Obtener y imprimir los detalles de los muebles
     OPEN c_muebles;
@@ -107,14 +85,14 @@ BEGIN
         FETCH c_muebles INTO
             v_mueble_id, v_mueble_color, v_mueble_linea, v_mueble_ancho, v_mueble_alto, v_tipo_mueble,
             v_mueble_altura, v_capacidad_peso, v_num_divisiones, v_altura_suelo, v_material, v_tipo_componente,
-            v_es_marmol, v_es_aglomerado, v_fabricante_nombre, v_fabricante_direccion, v_fabricante_fecha;
+            v_mat_enc, v_fabricante_nombre, v_fabricante_direccion, v_fabricante_fecha;
         EXIT WHEN c_muebles%NOTFOUND;
 
         DBMS_OUTPUT.PUT_LINE('Mueble ID: ' || v_mueble_id || ', Color: ' || v_mueble_color || ', Línea: ' || v_mueble_linea);
         DBMS_OUTPUT.PUT_LINE('Ancho: ' || v_mueble_ancho || ', Alto: ' || v_mueble_alto || ', Tipo: ' || v_tipo_mueble);
         DBMS_OUTPUT.PUT_LINE('Altura: ' || v_mueble_altura || ', Capacidad Peso: ' || v_capacidad_peso || ', Divisiones: ' || v_num_divisiones);
         DBMS_OUTPUT.PUT_LINE('Altura Suelo: ' || v_altura_suelo || ', Material: ' || v_material || ', Tipo Componente: ' || v_tipo_componente);
-        DBMS_OUTPUT.PUT_LINE('Mármol: ' || v_es_marmol || ', Aglomerado: ' || v_es_aglomerado);
+        DBMS_OUTPUT.PUT_LINE('Material de encimera: ' || v_mat_enc);
         DBMS_OUTPUT.PUT_LINE('Fabricante: ' || v_fabricante_nombre || ', Dirección: ' || v_fabricante_direccion || ', Fecha: ' || v_fabricante_fecha);
         DBMS_OUTPUT.PUT_LINE('---');
     END LOOP;
@@ -124,6 +102,6 @@ END obtener_detalles_cocina;
 
 --USAR
 BEGIN
-    obtener_detalles_cocina(3, 12345);
+    obtener_detalles_cocina(6, 10101);
 END;
 /

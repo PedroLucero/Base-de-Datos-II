@@ -18,7 +18,7 @@ BEGIN
         VALUES (SEQ_COMPRA.CURRVAL, p_MUEBLES(i), p_CANTIDADES(i));
     END LOOP;
 
-    -- COMMIT;
+    COMMIT;
 EXCEPTION
 -- añadir excp de fk cuando fabricante no existe
 -- añadir excp cuando mueble no existe
