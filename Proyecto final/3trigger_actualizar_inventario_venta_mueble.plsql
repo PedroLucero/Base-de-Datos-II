@@ -61,7 +61,7 @@ BEGIN
     FROM VENTA
     WHERE num_factura = :NEW.num_factura;
     --Cantidad antes de insertar de la tabla cocina
-    SELECT inStock INTO v_actual_cantidad FROM Cocina WHERE id = :NEW.id_cocina;
+    SELECT inStock INTO v_anterior_cantidad FROM Cocina WHERE id = :NEW.id_cocina;
 
     UPDATE COCINA
     SET INSTOCK = INSTOCK - :NEW.CANTIDAD
