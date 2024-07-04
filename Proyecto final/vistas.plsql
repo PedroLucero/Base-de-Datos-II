@@ -1,3 +1,4 @@
+-- vista de compras
 CREATE OR REPLACE VIEW Vista_Compras AS
 SELECT 
     c.id_compra AS ID_Compra,
@@ -25,3 +26,32 @@ JOIN
     mueble m ON dc.id_mueble = m.id
 ORDER BY 
     f.nombre, c.fecha;
+
+-- vista de clientes
+CREATE OR REPLACE VIEW ventas_clientes AS
+SELECT 
+    v.num_factura,
+    v.SUBTOTAL,
+    v.IMPUESTO,
+    v.TOTAL,
+    v.fecha_VENTA,
+    c.nombre AS Cliente,
+    c.direccion AS Direccion,
+    c.telefono AS Telefono
+FROM
+    VENTA v 
+JOIN Cliente c ON v.id_cliente = c.id
+
+-- vista de inventario 
+CREATE OR REPLACE VIEW vista_inventario AS
+SELECT
+    m.id,
+    m.tipo_mueble,
+    T.NOMBRE,
+    m.precio,
+    f.id AS ID_Fabricante,
+    f.nombre AS Fabricante,
+    f.direccion AS Direccion
+FROM 
+    MUEBLE m
+JOIN Fabricante f ON M.ID_fabricante = f.id JOIN TIPO_MUEBLE T ON M.TIPO_MUEBLE = T.ID_TIPO;
