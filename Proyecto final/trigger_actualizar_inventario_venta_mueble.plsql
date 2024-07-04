@@ -1,4 +1,4 @@
-CREATE OR REPLACE PROCEDURE actualizar_inventario_venta_mueble
+CREATE OR REPLACE TRIGGER actualizar_inventario_venta_mueble
 AFTER INSERT OR UPDATE ON DETALLE_V_MUEBLES
 FOR EACH ROW
 BEGIN
