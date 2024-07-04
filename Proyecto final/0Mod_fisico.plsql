@@ -17,7 +17,8 @@ CREATE SEQUENCE SEQ_CLIENTE START WITH 1;
 CREATE SEQUENCE SEQ_REPARTIDOR START WITH 1;
 CREATE SEQUENCE SEQ_VEHICULO START WITH 1;
 CREATE SEQUENCE SEQ_PRODUCTO START WITH 1;
-CREATE SEQUENCE SEQ_NUM_FACTURA START WITH 1000;
+CREATE SEQUENCE SEQ_COMPRA START WITH 1;
+CREATE SEQUENCE SEQ_VENTA START WITH 1;
 -- CREATE SEQUENCE SEQ_MUEBLE START WITH 1;
 -- CREATE SEQUENCE SEQ_COCINA START WITH 1;
 
@@ -100,25 +101,22 @@ create table Mueble( -- Estos son MODELOS de mueble
 	num_divisiones number,
 	material varchar2(20), --Paneles
 	t_componente varchar2(20),
-	marmol number(1,0), --Encimeras	
-	aglomerado number(1,0),
+	mat_enc char, --Encimeras	
 	ID_fabricante number,
     constraint mueble_pk primary key (id),
 	constraint mueble_fk_tipo foreign key (tipo_mueble) references TIPO_MUEBLE (ID_TIPO),
 	constraint mueble_fk_fabricante foreign key (ID_fabricante) references Fabricante (id),
-	constraint check_marmol check (marmol in (1,0)),
-	constraint check_aglom check (aglomerado in (1,0))
+	constraint check_mat_enc check (mat_enc in ('M','A'))
 );
 
 create table Cocina( -- MODELO
-	id number unique not null,
+	id number not null,
 	numSerie number not null,
 	inStock number not null,
 	nombre varchar2(20) not null,
 	precio number(6,2) not null,
 	numMuebles number not null, -- se calcula desde trigger en MuebleEnCocina
-	constraint cocina_pk primary key (id, numSerie),
-	constraint cocina_fk_repartidor foreign key (ID_repartidor) references Repartidor (id),
+	constraint cocina_pk primary key (id)
 );
 
 create table MuebleEnCocina(
@@ -146,32 +144,67 @@ create table VehiculoRepartidor(
 	constraint vehirep_fk_rep foreign key (id_Repartidor) references Repartidor(id)
 );
 
-CREATE TABLE ENTREGAS(
-	NUM_FACTURA NUMBER NOT NULL,
-	ID_REPARTIDOR NUMBER NOT NULL,
-	FECHA_ASIGNADA DATE NOT NULL,
-	constraint ENTREGAS_PK primary key(NUM_FACTURA, ID_REPARTIDOR),
-	CONSTRAINT ENTREGAS_FK_VENTAS FOREIGN KEY (NUM_FACTURA) REFERENCES VENTAS (NUM_FACTURA),
-	CONSTRAINT ENTREGAS_FK_REP FOREIGN KEY (ID_REPARTIDOR) REFERENCES REPARTIDOR (ID)
+-- Tablas de Transaccion:
+CREATE TABLE COMPRA(
+	ID_COMPRA NUMBER NOT NULL,
+	FACTURA_FABRICANTE NUMBER NOT NULL, -- esto es lo que mantiene el fabricante
+	ID_FABRICANTE NUMBER NOT NULL,
+	MONTO NUMBER (6,2) NOT NULL,
+	CONSTRAINT COMPRA_PK PRIMARY KEY (ID_COMPRA),
+	CONSTRAINT COMPRA_FK_FABR FOREIGN KEY (ID_FABRICANTE) REFERENCES FABRICANTE (ID)
 );
 
--- Tablas de Transaccion:
-create table VENTAS(
+CREATE TABLE DETALLE_COMPRA(
+	ID_COMPRA NUMBER NOT NULL,
+	ID_MUEBLE NUMBER NOT NULL,
+	CANTIDAD NUMBER NOT NULL,
+	CONSTRAINT DET_COMPRA_PK PRIMARY KEY (ID_COMPRA, ID_MUEBLE),
+	CONSTRAINT DET_COMPRA_FK_COMPRA FOREIGN KEY (ID_COMPRA) REFERENCES COMPRA (ID_COMPRA),
+	CONSTRAINT DET_COMPRA_FK_MUEBLE FOREIGN KEY (ID_MUEBLE) REFERENCES MUEBLE (ID)
+);
+
+create table VENTA(
 	num_factura number not null,
-	id_PRODUCTO number not null,
-	cantidad number not null,
 	SUBTOTAL NUMBER(6,2) NOT NULL,
 	IMPUESTO NUMBER(6,2) NOT NULL,
 	TOTAL NUMBER(6,2) NOT NULL,
 	id_cliente number not null,
 	fecha_VENTA date not null,
 	constraint ventacocina_pk primary key(num_factura),
-	constraint ventacocina_fk_cocina foreign key (id_cocina) references Cocina (id),
-	constraint ventacocina_fk_cliente foreign key (id_cliente) references Cliente (id),
-	constraint ventacocina_fk_rep foreign key (ID_REPARTIDOR) references REPARTIDOR (id)
+	constraint ventacocina_fk_cliente foreign key (id_cliente) references Cliente (id)
 );
 
--- PROCEDIMIENTO DE INSERTAR EN VENTAS: (NUM_FACTURA, ID_PRODUCTO, CANTIDAD, ID_CLIENTE, ID_REPARTIDOR, FECHA_VENTA, DIAS_PARA_ENTREGA)
+-------- fin de T's
+CREATE TABLE DETALLE_V_MUEBLES(
+	NUM_FACTURA NUMBER NOT NULL,
+	ID_MUEBLE NUMBER NOT NULL,
+	CANTIDAD NUMBER NOT NULL,
+	CONSTRAINT DET_M_PK PRIMARY KEY (NUM_FACTURA, ID_MUEBLE),
+	CONSTRAINT DET_M_FK_FAC FOREIGN KEY (NUM_FACTURA) REFERENCES VENTAS (NUM_FACTURA),	
+	CONSTRAINT DET_M_FK_M FOREIGN KEY (ID_MUEBLE) REFERENCES MUEBLE (ID)
+);
+
+CREATE TABLE DETALLE_V_COCINAS(
+	NUM_FACTURA NUMBER NOT NULL,
+	ID_COCINA NUMBER NOT NULL,
+	CANTIDAD NUMBER NOT NULL,
+	CONSTRAINT DET_C_PK PRIMARY KEY (NUM_FACTURA, ID_COCINA),
+	CONSTRAINT DET_C_FK_FAC FOREIGN KEY (NUM_FACTURA) REFERENCES VENTAS (NUM_FACTURA),
+	CONSTRAINT DET_C_FK_C FOREIGN KEY (ID_COCINA) REFERENCES COCINA (ID)
+);
+
+CREATE TABLE ENTREGA(
+	NUM_FACTURA NUMBER NOT NULL,
+	ID_REPARTIDOR NUMBER NOT NULL,
+	ID_MONTADOR NUMBER NOT NULL,
+	FECHA_ASIGNADA DATE NOT NULL,
+	constraint ENTREGAS_PK primary key(NUM_FACTURA, ID_REPARTIDOR),
+	CONSTRAINT ENTREGAS_FK_VENTAS FOREIGN KEY (NUM_FACTURA) REFERENCES VENTAS (NUM_FACTURA),
+	CONSTRAINT ENTREGAS_FK_REP FOREIGN KEY (ID_REPARTIDOR) REFERENCES REPARTIDOR (ID),
+	CONSTRAINT ENTREGAS_FK_MONT FOREIGN KEY (ID_MONTADOR) REFERENCES MONTADOR (ID)
+);
+
+-- PROCEDIMIENTO DE REGISTRAR VENTA: (ID_CLIENTE, COCINAS, C_COCINAS, MUEBLES, C_MUEBLES, ID_REPARTIDOR, MONTADOR, FECHA_VENTA, FECHA_ENTREGA)
 
 -- Falta añadir COMPRA_COCINA
 -- Realmente creo que no, por la regla de 1 dist para cada cocina
