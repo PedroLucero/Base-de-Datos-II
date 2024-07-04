@@ -179,6 +179,7 @@ create table VENTA(
 	IMPUESTO NUMBER(6,2) NOT NULL,
 	TOTAL NUMBER(6,2) NOT NULL,
 	id_cliente number not null,
+	ID_USUARIO NUMBER NOT NULL,
 	fecha_VENTA date not null,
 	constraint ventacocina_pk primary key(num_factura),
 	constraint ventacocina_fk_cliente foreign key (id_cliente) references Cliente (id)
