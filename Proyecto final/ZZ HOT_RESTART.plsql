@@ -955,7 +955,7 @@ SELECT
     c.telefono AS Telefono
 FROM
     VENTA v 
-JOIN Cliente c ON v.id_cliente = c.id;
+JOIN Cliente c ON v.id_cliente = c.id
 
 -- vista de inventario 
 CREATE OR REPLACE VIEW vista_inventario AS
@@ -970,3 +970,27 @@ SELECT
 FROM 
     MUEBLE m
 JOIN Fabricante f ON M.ID_fabricante = f.id JOIN TIPO_MUEBLE T ON M.TIPO_MUEBLE = T.ID_TIPO;
+
+
+-- select * from cocina where id = 6; -- se usa en conjunto con ↓
+CREATE OR REPLACE VIEW DETALLES_COCINA AS
+SELECT
+    ID_COCINA,
+    ID_MUEBLE,
+    T.NOMBRE,
+    ME.CANTIDAD,
+    COLOR,
+    LINEA,
+    ANCHO,
+    ALTO,
+    ALTURA,
+    C_PESO,
+    DIVISIONES,
+    ALTURA_SUELO,
+    NUM_DIVISIONES,
+    MATERIAL,
+    T_COMPONENTE,
+    MAT_ENC
+FROM 
+MUEBLEENCOCINA ME JOIN MUEBLE M ON M.ID = ME.ID_MUEBLE JOIN TIPO_MUEBLE T ON M.ID = T.ID_TIPO;
+-- WHERE ME.ID_COCINA = 6; -- DEBE TENER ESTE WHERE!!!

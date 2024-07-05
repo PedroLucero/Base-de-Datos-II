@@ -23,6 +23,7 @@ BEGIN
             NULL, NULL,
             NULL, NULL,
             NULL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Este mueble alto ya existe');
@@ -53,6 +54,7 @@ BEGIN
             p_ALTURA_SUELO, p_NUM_DIV,
             NULL, NULL,
             NULL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Este mueble bajo ya existe');
@@ -83,6 +85,7 @@ BEGIN
             NULL, NULL,
             p_MATERIAL, p_TIP_COMP,
             NULL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Este panel ya existe');
@@ -111,6 +114,7 @@ BEGIN
             NULL, NULL, NULL,
             NULL, NULL,
             NULL, NULL,p_MATERIAL, p_FABRICANTE);
+    COMMIT;
 EXCEPTION
     WHEN DUP_VAL_ON_INDEX THEN
         DBMS_OUTPUT.PUT_LINE('Esta encimera ya existe');
