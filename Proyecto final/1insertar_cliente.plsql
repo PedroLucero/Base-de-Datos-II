@@ -23,12 +23,11 @@ END;
 /
 
 
---OJO YA NO SIRVE SE HACE POR WEB
 -- Prueba
 BEGIN
-    INSERTAR_CLIENTE('Paolo Linares', 'Carlos Santana Ávila, distrito de Santiago', '6000-0002');
-    INSERTAR_CLIENTE('Irene Alfredo', 'Llano Bonito, distrito de Chitré', '6008-0497');
-    INSERTAR_CLIENTE('Fe Begoña', 'Los Pozos, distrito de Los Pozos', '6039-0539');
-    INSERTAR_CLIENTE('Elías Romualdo', 'Purio, distrito de Pedasí', '6050-0246');
+  REGISTRAR_CLIENTE ('Jose Hernandez', 'MouthTheBox', '8-1002-2448', 'JzeHub', 'Pay2win');
+  REGISTRAR_CLIENTE ('Dobby Bethsaida', 'San Felipe', '1-2448-8128', 'Dbby', 'BocasTown');
+  REGISTRAR_CLIENTE ('Ben clover', 'Costa Verde', '9-1202-6771', 'cl0vr', '123');
+  REGISTRAR_CLIENTE ('Elvis Stek', 'San Sebastían', '1-2448-8128', 'Elvis20', 'meat');
 END;
 /
