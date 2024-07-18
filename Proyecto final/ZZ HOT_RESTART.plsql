@@ -298,7 +298,7 @@ CREATE TABLE Auditoria_Inventario (
 --         DBMS_OUTPUT.PUT_LINE('Este cliente ya existe');
 -- END;
 -- /
-
+--Insercion del procedimeinto registrar_cliente
 CREATE OR REPLACE PROCEDURE REGISTRAR_CLIENTE(
     p_NOMBRE CLIENTE.NOMBRE%TYPE,
     p_DIRECCION CLIENTE.DIRECCION%TYPE,
