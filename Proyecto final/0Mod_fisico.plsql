@@ -97,7 +97,7 @@ CREATE TABLE TIPO_MUEBLE( -- 1=ALTO, 2=BAJO, 3=PANEL, 4=ENCIMERA
 create table Mueble( -- Estos son MODELOS de mueble
 	id number not null,
 	cantidad number not null,
-	color varchar2(20) not null,
+	esor varchar2(20) not null,
 	linea varchar2(20) not null,
 	ancho decimal(3,1) not null,
 	alto decimal(3,1) not null,
