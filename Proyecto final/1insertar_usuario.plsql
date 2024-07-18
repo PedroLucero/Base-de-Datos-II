@@ -29,10 +29,3 @@ END;
 /
 
 
---OJO YA NO SIRVE ESTO ↓
-BEGIN
-    INSERTAR_USUARIO('Jonatan Modesto', 'Tijeras, distrito de Boquerón', '6010-0193');
-    INSERTAR_USUARIO('Reyna Carmelita', 'Bajo Boquete, distrito de Boquete', '6031-0678');
-    INSERTAR_USUARIO('Ainara Olegario', 'La Garceana, distrito de Montijo', '6006-0350');
-END;
-/

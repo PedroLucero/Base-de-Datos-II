@@ -301,10 +301,10 @@ CREATE TABLE Auditoria_Inventario (
 
 -- Prueba
 BEGIN
-    INSERTAR_CLIENTE('Paolo Linares', 'Carlos Santana Ávila, distrito de Santiago', '6000-0002');
-    INSERTAR_CLIENTE('Irene Alfredo', 'Llano Bonito, distrito de Chitré', '6008-0497');
-    INSERTAR_CLIENTE('Fe Begoña', 'Los Pozos, distrito de Los Pozos', '6039-0539');
-    INSERTAR_CLIENTE('Elías Romualdo', 'Purio, distrito de Pedasí', '6050-0246');
+  REGISTRAR_CLIENTE ('Jose Hernandez', 'MouthTheBox', '8-1002-2448', 'JzeHub', 'Pay2win');
+  REGISTRAR_CLIENTE ('Dobby Bethsaida', 'San Felipe', '1-2448-8128', 'Dbby', 'BocasTown');
+  REGISTRAR_CLIENTE ('Ben clover', 'Costa Verde', '9-1202-6771', 'cl0vr', '123');
+  REGISTRAR_CLIENTE ('Elvis Stek', 'San Sebastían', '1-2448-8128', 'Elvis20', 'meat');
 END;
 /
 
@@ -861,6 +861,7 @@ END;
 /
 
 -- Prueba
+-- Prueba
 DECLARE
     V_ID_CLIENTE VENTA.ID_CLIENTE%TYPE;
     V_ID_USUARIO VENTA.ID_USUARIO%TYPE;
@@ -872,12 +873,12 @@ DECLARE
     V_ID_MONTADOR MONTADOR.ID%TYPE;
     V_FECHA_ENTREGA ENTREGA.FECHA_ASIGNADA%TYPE;
 BEGIN
-    V_ID_CLIENTE := 3; -- fe begoña
+    V_ID_CLIENTE := 2; -- Dobby Bethsaida
     V_ID_USUARIO := 1; -- jonatan modesto
-    V_COCINAS := SYS.ODCINUMBERLIST(); -- arreglo
-    V_C_COCINAS := SYS.ODCINUMBERLIST(); -- arreglo
-    V_MUEBLES := SYS.ODCINUMBERLIST(1, 5); -- arreglo
-    V_C_MUEBLES := SYS.ODCINUMBERLIST(2, 2); -- arreglo
+    V_COCINAS := SYS.ODCINUMBERLIST(6); -- arreglo
+    V_C_COCINAS := SYS.ODCINUMBERLIST(1); -- arreglo
+    V_MUEBLES := SYS.ODCINUMBERLIST(); -- arreglo
+    V_C_MUEBLES := SYS.ODCINUMBERLIST(); -- arreglo
     V_ID_REPARTIDOR := 2; -- sebastián cleto
     V_ID_MONTADOR := 1; -- josé hernández
     V_FECHA_ENTREGA := sysdate + 2;
@@ -885,10 +886,10 @@ BEGIN
     REGISTRAR_VENTA(V_ID_CLIENTE, V_ID_USUARIO, V_COCINAS, V_C_COCINAS, V_MUEBLES, V_C_MUEBLES,
                     V_ID_REPARTIDOR, V_ID_MONTADOR, V_FECHA_ENTREGA);
 
-    V_ID_CLIENTE := 2;
+    V_ID_CLIENTE := 4;
     V_ID_USUARIO := 2;
-    V_COCINAS := SYS.ODCINUMBERLIST(6);
-    V_C_COCINAS := SYS.ODCINUMBERLIST(2);
+    V_COCINAS := SYS.ODCINUMBERLIST(7);
+    V_C_COCINAS := SYS.ODCINUMBERLIST(3);
     V_MUEBLES := SYS.ODCINUMBERLIST();
     V_C_MUEBLES := SYS.ODCINUMBERLIST();
     V_ID_REPARTIDOR := 1;
@@ -899,20 +900,19 @@ BEGIN
                     V_ID_REPARTIDOR, V_ID_MONTADOR, V_FECHA_ENTREGA);
 
     V_ID_CLIENTE := 1;
-    V_ID_USUARIO := 3;
-    V_COCINAS := SYS.ODCINUMBERLIST(6);
-    V_C_COCINAS := SYS.ODCINUMBERLIST(2);
-    V_MUEBLES := SYS.ODCINUMBERLIST(1);
-    V_C_MUEBLES := SYS.ODCINUMBERLIST(3);
-    V_ID_REPARTIDOR := 2;
+    V_ID_USUARIO := 1;
+    V_COCINAS := SYS.ODCINUMBERLIST();
+    V_C_COCINAS := SYS.ODCINUMBERLIST();
+    V_MUEBLES := SYS.ODCINUMBERLIST(4,5);
+    V_C_MUEBLES := SYS.ODCINUMBERLIST(3,3);
+    V_ID_REPARTIDOR := 4;
     V_ID_MONTADOR := 3;
-    V_FECHA_ENTREGA := sysdate + 2;
+    V_FECHA_ENTREGA := sysdate + 3;
     
     REGISTRAR_VENTA(V_ID_CLIENTE, V_ID_USUARIO, V_COCINAS, V_C_COCINAS, V_MUEBLES, V_C_MUEBLES,
                     V_ID_REPARTIDOR, V_ID_MONTADOR, V_FECHA_ENTREGA);
 END;
 /
-
 -- vista de compras
 CREATE OR REPLACE VIEW Vista_Compras AS
 SELECT 
