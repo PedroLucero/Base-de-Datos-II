@@ -428,6 +428,7 @@ END;
 BEGIN
     INSERTAR_USUARIO('John Doe', '1234567890', '123 Main St', 'johndoe', '123');
     INSERTAR_USUARIO('Sirius Black', '1289667890', 'b Main St', 'perro', 'pulga');
+    INSERTAR_USUARIO('Pedro Lucero', '6767420', '321 Second St', 'pedrol', 'pedro');
 END;
 /
 
